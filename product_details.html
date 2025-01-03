@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Product Details</title>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="home.html" class="logo">Golden Thread</a>
+                <ul class="nav-links">
+
+                    <!-- Navigation Section -->
+                    <ul>
+                        <li>
+                            <a href="view_cart.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span id="cart-count" class="cart-count">0</span> <!-- Cart count here -->
+                            </a>
+                        </li>
+                        
+                    </ul>
+                    <!-- Added View Cart option -->
+                </ul>
+                <!-- <div class="menu-toggle">&#9776;</div> -->
+            </div>
+        </nav>
+    </header>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #fff;  /* Light text for better contrast on dark background */
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.9);  /* Darker background */
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);  /* Darker shadow */
+            backdrop-filter: blur(20px);
+            transition: background 0.5s ease, box-shadow 0.3s ease;
+            opacity: 1;  /* Full opacity for header */
+        }
+        
+        /* Navbar Styling with reduced height and black-based opacity */
+        .navbar {
+            background: rgba(0, 0, 0, 0.85);  /* Dark background */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* Subtle border for contrast */
+            padding: 0.6rem 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.4s ease, box-shadow 0.3s ease;
+            opacity: 0.95;  /* Slight transparency */
+        }
+        
+        /* Scrolled state with darker background */
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.95);  /* Slightly darker when scrolled */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+        }
+        
+        /* Container for layout and spacing */
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Logo with brighter color for contrast */
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #fff;  /* White color for logo */
+            position: relative;
+            letter-spacing: 1.2px;
+            text-decoration: none;
+        }
+        
+        /* Simplified Navigation Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            opacity: 0.85;
+        }
+        
+        /* Clean Links with subtle hover effect */
+        .nav-links a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #fff;  /* White text color */
+            padding: 5px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Subtle glow and scaling effect on hover */
+        .nav-links a:hover {
+            color: #e67e22;  /* Vibrant orange color */
+            transform: scale(1.05);
+        }
+        
+        
+        
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.95);  /* Dark background for mobile menu */
+                padding: 1rem;
+                border-radius: 10px;
+            }
+        
+            .nav-links.active {
+                display: flex;
+            }
+        
+            .menu-toggle {
+                display: block;
+                font-size: 2rem;
+                color: #ff6f61;
+                cursor: pointer;
+            }
+        }
+        
+        /* Adding soft fade-in animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .navbar {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8e8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        /* Wrapper to keep label and selections in the same line */
+        .color-section,
+        .size-section {
+            display: flex;
+            align-items: center;
+            /* Align the label with the selection options */
+            gap: 10px;
+            /* Space between label and selection options */
+            margin-bottom: 20px;
+        }
+
+        .color-section label,
+        .size-section label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-right: 10px;
+            /* Space between label and selection */
+        }
+
+        /* Style for the color circles */
+        .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 5px;
+            cursor: pointer;
+            display: inline-block;
+            border: 2px solid #ccc;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .color-circle.selected {
+            border-color: #000;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            transform: scale(1.1);
+        }
+
+        #color-preview {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            border: 1px solid #000;
+        }
+
+        /* Style for the size selection box */
+        .size-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        .size-box div {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .size-box div:not(.selected):hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .size-box .selected {
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+
+
+
+
+        /* Styling from your code */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f5f0;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .image-section,
+        .details-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        #imageSection img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+        }
+
+        .details-section {
+            padding-left: 40px;
+        }
+
+        .details-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin: 0;
+        }
+
+        .details-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .details-section p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .product-enquiry {
+            background-color: #000;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        .shipping-info {
+            display: flex;
+            align-items: center;
+            border: 1px solid #000;
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        .shipping-info i {
+            margin-right: 10px;
+        }
+
+        .accordion {
+            border-top: 1px solid #ccc;
+            margin-top: 20px;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .accordion-item h3 {
+            font-size: 18px;
+            margin: 0;
+            padding: 15px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-item h3:hover {
+            color: #000;
+        }
+
+        .accordion-item-content {
+            display: none;
+            padding: 15px 0;
+        }
+
+        .accordion-item-content p {
+            margin: 0;
+        }
+
+        .share-icons {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .share-icons i {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .details-section {
+                padding-left: 0;
+            }
+        }
+
+        .button {
+            background-color: #231f20;
+            color: #ffffff;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="image-section" id="imageSection">
+            <!-- Product image will be injected here -->
+        </div>
+        <div class="details-section" id="detailsSection">
+            <!-- Product details will be dynamically injected here -->
+        </div>
+    </div>
+
+    <script>
+        // Products data array
+        const products = [
+            {
+                id: 1,
+                name: "ARVIA PRINTED GEORGETTE ",
+                price: "₹113,000",
+                image: "img/image9.jpg",
+                description: "An elegant georgette saree for special occasions.",
+            },
+            {
+                id: 2,
+                name: "AVIS PRINTED SAREE",
+                price: "₹2,22,000",
+                image: "img/image10.jpg",
+                description: "A classic modern printed designs.",
+            },
+            {
+                id: 3,
+                name: "TOYAM EMBROIDERED ZARDOZI SILK LEHENGA",
+                price: "₹1,65,000",
+                image: "img/image101.jpg",
+                description: "A beautiful zardozi silk lehenga perfect for weddings.",
+            },
+            {
+                id: 4,
+                name: "MEHREEN EMBROIDERED ZARDOZI SILK",
+                price: "₹4,90,000",
+                image: "img/image102.jpg",
+                description: "An exquisite silk lehenga with intricate embroidery.",
+            },
+            {
+                id: 5,
+                image: 'img/image11.jpg',
+                alt: 'Grey Silk Embroidered Saree',
+                name: 'Begum Pret',
+                price: '₹29,500',
+                description: "The zari silk blouse exudes opulence and elegance and is adorned with intricate dabka, zardozi, nakshi, and dori floral work. Paired with a statement silk tissue saree, it is perfect for any special occasion.",
+
+            },
+            {
+                id: 6,
+                image: 'img/image12.jpg',
+                alt: 'Ivory Floral Printed Saree',
+                <!-- brand: 'Designer Label', -->
+                name: 'Ivory Floral Printed Sari',
+                price: '₹90,000',
+                description: "Featuring An Ivory Saree In Chiffon Base With Floral Print With Matching Blouse Fabric In Chanderi & Under Skirt Fabric Blouse In Photo Is Only Styling.",
+
+            },
+            {
+                id: 7,
+                image: 'img/image13.jpg',
+                alt: 'Grey Floral Printed Saree',
+                brand: 'Designer Label',
+                name: 'Grey Floral Printed Saree',
+                price: '₹1,20,000.00',
+                description: "Walk in glamour and turn heads with our grey tussar silk saree. Designed with a remarkable floral print, it adds to your unique style and grace. The exquisite zari woven designs in the borders and pallu stand out, offering a stunning blend of tradition and fashion. YFall in love with the tassels in the pallu which add a touch of drama to the overall drapery. Each saree comes with an unstitched blouse piece, ensuring you can match it with perfect harmony.",
+
+            },
+            {
+                id: 8,
+                name: "Aeindri Lehenga Set - Blush",
+                price: "₹85,000",
+                image: "img/image214.jpg",
+                altText: "Bridal Wear - Aeindri Lehenga Set",
+            },      
+            {
+                id: 9,
+                name: "Deepa Lehenga Set - Red",
+                brand: "Designer Label",
+                price: "₹90,000",
+                image: "img/image15.jpg",
+                description: "With ornate depictions of a royal garden in full bloom, this red silk lehenga set is realised with our signature gold gota patti hand embroidery with a scattering of gold pearls and sequins, along with zardozi work and anchor French knots. Pockets come included."
+            },
+            {
+                id: 10,
+                name: "Ezrine Lehenga Set - Carrot Pink",
+                brand: "Designer Label",
+                price: "₹1,20,000",
+                image: "img/image16.jpg",
+                description: "With ornate floral hand embroidery ascending over a lush pink hue, this silk lehenga is intricacy realised with masterful gota patti hand embroidery and embellishments of sequins, silver pearls and aari work. Pockets come included."
+            },
+            {
+                id: 11,
+                image: 'img/image17.jpg',
+                alt: 'Fig Handcrafted Kantha Overlayer Set - Pink',
+                brand: 'Designer Label',
+                name: 'Fig Handcrafted Kantha Overlayer Set - Pink',
+                price: '₹19,000',
+                description: "Inspired by the gentle shift of seasons, our Fig overlayer set is crafted in a soothing pink hue. Hand-embroidered in Kantha by women artisans, this ensemble is made in linen for ease and subtle elegance.",
+            },
+            {
+                id: 12,
+                image: 'img/image18.jpg',
+                alt: 'Uphill Hand-block Printed Linen Co-ord - Grey',
+                brand: 'Designer Label',
+                name: 'Uphill Hand-block Printed Linen Co-ord - Grey',
+                price: '₹15,000',
+                description: "Inspired by the ascent leading to scenic mountain tops this hand-block printed Linen co-ord is perfect for balmy summer days. Comes in a round neckline with front placket and full sleeves.",
+            },
+            {
+                id: 13,
+                image: 'img/image19.jpg',
+                alt: 'Grove Hand-block Printed Linen Co-ord - Sage',
+                brand: 'Designer Label',
+                name: 'Grove Hand-block Printed Linen Co-ord - Sage',
+                price: '₹13,000',
+                description: "Lush trees that offer much-needed respite in summers inspired this co-ord. Crafted in modal satin and elevated in hand-block prints all over this breezy coord comes in a round neckline with placket and full sleeves.",
+            },
+            {
+                id: 14,
+                image: "img/image21.jpg",
+                alt: "Aanav Embroidered Silk Sherwani - Off White",
+                brand: "Designer Label",
+                name: "Aanav Embroidered Silk Sherwani - Off White",
+                price: "₹90,000.00",
+                description: "A timeless sherwani silhouette gets a modern upgrade in Aanav. Featuring nature-inspired motifs in tonal threadwork & zari, it is perfect for special occasions or festive celebrations.",
+            },
+            {
+                id: 15,
+                image: "img/image22.jpg",
+                alt: "Ivaan Sherwani - Off White",
+                brand: "Designer Label",
+                name: "Ivaan Sherwani - Off White",
+                price: "₹90,000.00",
+                description: "A classic off-white sherwani that looks dapper. Ivaan is crafted in raw silk and elevated with detailed embroidery.",
+            },
+            {
+                id: 16,
+                image: "img/image23.jpg",
+                alt: "Yuven Silk Sherwani - Black",
+                brand: "Designer Label",
+                name: "Yuven Silk Sherwani - Black",
+                price: "₹1,20,000.00",
+                description: "A luxurious black sherwani that comes with tonal threadwork. Yuven makes a statement and is perfect for cocktails and festive soirees.",
+            },
+            {
+                id: 17,
+                name: "Steel Blue Two Tone Spun Silk Kurta Set",
+                brand: "Designer Label",
+                price: "₹74,000.00",
+                image: "img/image24.jpg",
+                description: "Steel grey- blue two tone spun silk kurta set with dori embroidery. Paired with ivory churidar."
+            },
+            {
+                id: 18,
+                name: "Khidr Printed Silk Kurta - Green",
+                brand: "Designer Label",
+                price: "₹14,900.00",
+                image: "img/image25.jpg",
+                description: "Khidr makes a bold entrance with its deep green hue. Crafted in silk, it features nature-inspired prints and is perfect for sangeet nights & gleaming soirees. Comes with side pockets."
+            },
+            {
+                id: 19,
+                name: "Naksh Kurta - Rose Wood",
+                brand: "Designer Label",
+                price: "₹10,200.00",
+                image: "img/image26.jpg",
+                description: "With its soothing tone, the Naksh kurta is perfect for summertime soirees. The distinguished yet detailed frame of this kurta makes it a great addition to your wardrobe."
+            },
+            {
+                id: 20,
+                name: "Ivory with Silver Embroidered Blazer",
+                brand: "Premium Couture",
+                price: "₹74,000.00",
+                image: "img/image27.jpg",
+                description: "Ivory blazer with silver embroidery, paired with a white shirt and black trousers. This is a three-piece look."
+            },
+            {
+                id: 21,
+                name: "Black Blazer with Gold Zari Embroidery",
+                brand: "Premium Couture",
+                price: "₹90,900.00",
+                image: "img/image28.jpg",
+                description: "Black velvet blazer with intricate gold zari embroidery, paired with embroidered pants and a black shirt. This is a three-piece look."
+            },
+            {
+                id: 22,
+                name: "Black Floral Tuxedo",
+                brand: "Premium Couture",
+                price: "₹78,200.00",
+                image: "img/image29.jpg",
+                description: "Black tuxedo with floral oxidized gold details, paired with a black yoke quilted shirt and slim black pants. This is a three-piece look."
+            }, {
+                id: 23,
+                name: "Ivory Dori Circular Embroidered Bandhgala Set",
+                image: "img/image30.jpg",
+                price: "₹20,000.00",
+                url: "product_details.html?id=1",
+                description: "Ivory dori circular embroidered bandhgala.Paired with light grey silk kurta and matching aligarhi.",
+            },
+            {
+                id: 24,
+                name: "Azraq Printed Silk Nehru Jacket - Indigo",
+                image: "img/image31.jpg",
+                price: "₹21,900.00",
+                url: "product_details.html?id=2",
+                description: "Inspired by palatial motifs, Azraq is designed to add a statement touch to your festive looks. This Nehru Jacket is a stand out addition to your occasionwear wardrobe.",
+            },
+            {
+                id: 25,
+                name: "Hirav Printed Silk Nehru Jacket - Green",
+                image: "img/image32.jpg",
+                price: "₹18,200.00",
+                url: "product_details.html?id=3",
+                description: "Inspired by the lush flora of forests, Hirav makes a bold entrance featuring nature-inspired prints. Crafted in a deep green hue and made in silk, this Nehru Jacket is perfect for sangeet nights & gleaming soirees.",
+            }
+        ];
+
+
+        // Initialize the app
+
+
+        // Get the product ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get("id"), 10);
+
+        // Find the product by ID
+        const product = products.find((item) => item.id === productId);
+
+        // Inject product details dynamically
+        const imageSection = document.getElementById("imageSection");
+        const detailsSection = document.getElementById("detailsSection");
+
+        if (product) {
+            imageSection.innerHTML = `<img src="${product.image}" alt="${product.name}">`;
+
+            detailsSection.innerHTML = `
+                <!-- <h1>${product.brand}</h1> -->
+                <h2>${product.name}</h2>
+                <div class="price">${product.price}</div>
+                <p>${product.description}</p>
+    
+                <!-- Color Selection -->
+                <!-- Color Section -->
+<div class="color-section">
+    <label>Colour:</label>
+    <div class="color-circle" style="background-color: blue;" onclick="selectColor(this)" data-color="Blue"></div>
+    <div class="color-circle" style="background-color: red;" onclick="selectColor(this)" data-color="Red"></div>
+    <div class="color-circle" style="background-color: green;" onclick="selectColor(this)" data-color="Green"></div>
+</div>  
+
+<!-- Size Section -->
+<div class="size-section">
+    <label>Size:</label>
+    <div class="size-box">
+        <div onclick="selectSize(this)">XS</div>
+        <div onclick="selectSize(this)">S</div>
+        <div class="selected" onclick="selectSize(this)">M</div>
+        <div onclick="selectSize(this)">L</div>
+        <div onclick="selectSize(this)">XL</div>
+        <div onclick="selectSize(this)">XXL</div>
+    </div>
+</div>
+
+
+    
+                <div class="container">
+    <div class="button" id="addToCartBtn">Add To Cart</div>
+    <a href="view_cart.html">
+        
+    </a>
+</div>
+<div style="font-family: 'Roboto', sans-serif; font-size: 14px; color: #555;">
+    <p><strong>Disclaimer:</strong></p>
+    <p>The color of the product may vary slightly from how it appears on your screen. This is due to differences in display settings across devices, as well as the use of lighting filters or special effects during the photoshoot.</p>
+</div>
+
+            `;
+        } else {
+            detailsSection.innerHTML = `<p>Product not found. Please go back to the <a href="home.html">GO TO HOME PAGE</a>.</p>`;
+        }
+
+        // Add product to the cart and save to localStorage
+        function addToCart() {
+            if (!product) {
+                alert("Product not found!");
+                return;
+            }
+
+            // Get the selected color and size
+            const selectedColor = document.querySelector('.color-circle.selected')?.getAttribute('data-color') || "Default";
+            const selectedSize = document.querySelector('.size-box .selected')?.innerText || "Default";
+
+            // Retrieve existing cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+            // Update the product if already in the cart, or add a new one
+            if (existingProductIndex > -1) {
+                cart[existingProductIndex].quantity += 1; // Increase quantity
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    brand: product.brand,
+                    price: product.price,
+                    image: product.image,
+                    color: selectedColor,
+                    size: selectedSize,
+                    quantity: 1
+                });
+            }
+
+            // Save updated cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert("Product added to cart!");
+        }
+
+        // Event listener for "Add to Cart" button
+        const addToCartBtn = document.getElementById("addToCartBtn");
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener("click", addToCart);
+        }
+
+        // Color selection functionality
+        // Function to handle color selection
+        function selectColor(element) {
+            // Get the selected color from the clicked element's data attribute
+            const selectedColor = element.getAttribute('data-color');
+        
+            // Optional: Apply the selected color to a target element, e.g., an image or text
+            console.log('Selected Color:', selectedColor); // This will log the color when clicked
+        
+            // Highlight the selected color (add a border or change style)
+            const colorCircles = document.querySelectorAll('.color-circle');
+        
+            // Remove the 'selected' class from all color circles
+            colorCircles.forEach(circle => circle.classList.remove('selected'));
+        
+            // Add the 'selected' class to the clicked circle
+            element.classList.add('selected');
+        
+            // Example: Change an element's background color (e.g., a preview section)
+            
+            
+        }
+        
+
+
+        // Size selection functionality
+        function selectSize(element) {
+            document.querySelectorAll('.size-box div').forEach(size => {
+                size.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            
+            if (cartCountElement) {
+                // Update the cart count with the number of items in the cart
+                cartCountElement.textContent = cart.length;
+            }
+          }
+          
+          
+          // Call this function on page load to ensure the cart count is accurate.
+          document.addEventListener('DOMContentLoaded', function () {
+            updateCartCount(); // This will update the cart count on page load
+          });
+                    
+        
+
+</script>
+
+</body>
+</body>
+
+</html>

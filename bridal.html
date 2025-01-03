@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bridal Wear</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f5ec;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-item {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-info {
+            margin-top: 10px;
+        }
+
+        .product-info h2 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .product-info p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .price {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .product-actions .btn {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 30%;
+        }
+
+        .product-actions .btn:hover {
+            background-color: #444;
+        }
+
+        @media (max-width: 768px) {
+            .product-item {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">Bridal Wear</div>
+        <div class="product-grid" id="productGrid">
+            <!-- <div id="image-container"></div> -->
+            <!-- <img src="{{ url_for('bridal_wear.serve_image', filename=item['image']) }}" alt="Bridal Wear"> -->     
+            
+            <!-- Products will be dynamically loaded here -->
+        </div>
+    </div>
+    <script src="js/bridal_script.js"></script>
+</body>
+
+</html>

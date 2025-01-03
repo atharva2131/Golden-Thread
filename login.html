@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff;
+        }
+        .login-container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .login-container p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .login-container input[type="email"],
+        .login-container input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .login-container .forgot-password {
+            display: block;
+            text-align: right;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #666;
+            text-decoration: none;
+        }
+        .login-container .forgot-password:hover {
+            text-decoration: underline;
+        }
+        .login-container button {
+            width: 90%;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #333;
+        }
+        .login-container .signup {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .login-container .signup a {
+            color: #000;
+            text-decoration: none;
+        }
+        .login-container .signup a:hover {
+            text-decoration: underline;
+        }
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 1000;
+        }
+        .popup h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .popup p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .popup button {
+            padding: 8px 16px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #333;
+        }
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>LOGIN</h1>
+        <p>Please enter your e-mail and password:</p>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <a href="#" class="forgot-password">Forgot password?</a>
+        <button id="loginBtn">LOGIN</button>
+        <p class="signup">Don't have an account? <a href="registration.html">Register Now</a></p>
+    </div>
+
+    <!-- Popup -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h2 id="popupTitle">Error</h2>
+        <p id="popupMessage">Please enter both email and password.</p>
+        <button id="popupCloseBtn">Close</button>
+    </div>
+
+    <script>
+       // Add an event listener to the login button
+document.getElementById("loginBtn").addEventListener("click", async () => {
+    // Get the values from the input fields
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    // Validate input fields
+    if (!email || !password) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    try {
+        // Send a POST request to the login API
+        const response = await fetch("http://192.168.29.32:5000/auth/user-login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        // Parse the JSON response
+        const data = await response.json();
+
+        if (response.ok) {
+            alert(data.message || "Login successful!"); // Show success message
+            // Store token or session info if needed
+            localStorage.setItem("authToken", data.token || ""); // Assuming API returns a token
+            window.location.href = "home.html"; // Redirect to dashboard or home page
+        } else {
+            alert(data.error || "Login failed. Please check your credentials."); // Show error message
+        }
+    } catch (error) {
+        console.error("Error:", error); // Log error
+        alert("Error: Could not connect to the server. Please try again later."); // Show connection error
+    }
+});
+
+    </script>
+</body>
+</html>

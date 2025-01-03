@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Thread</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="logo">Golden Thread</a>
+                <ul class="nav-links">
+                    <li><a href="#about-us">About</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <ul>
+                        <!-- Cart Icon with count -->
+                        <li>
+                            <a href="view_cart.html">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span id="cart-count" class="cart-count">0</span> <!-- Display count here -->
+                            </a>
+                        </li>
+
+                        <!-- Cart Icon -->
+                    </ul>
+                    <li><a href="login.html"><i class="fas fa-user"></i></a></li> <!-- User Icon for login/profile -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+
+    <section class="hero">
+        <div class="container">
+            <!-- Optional: Image placed within the hero section -->
+            <img src="img/image20.jpg" alt="Wedding Collection" class="hero-image">
+
+            <h1>Exclusive Collection</h1>
+            <p>Discover timeless elegance and unmatched craftsmanship.</p>
+            <a href="#collections" class="btn">Explore Collections</a>
+        </div>
+    </section>
+    <div class="spacer">
+        Elegance
+    </div>
+    <section>
+        <div class="video-container">
+            <video autoplay loop muted class="responsive-video">
+                <source src="img/video1.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+
+
+    <section class="about-us" id="about-us">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>
+                    Welcome to <strong>Premium Clothing</strong>, where sophistication meets craftsmanship.
+                    Our premium clothing is designed to inspire confidence and celebrate individuality.
+                    We are dedicated to creating timeless pieces that reflect the perfect blend of luxury, quality, and
+                    style.
+                </p>
+                <p>
+                    Every stitch tells a story of excellence, and every fabric is carefully chosen to ensure the utmost
+                    comfort and durability.
+                    From our exclusive collections to our bespoke designs, we promise an unparalleled experience for
+                    those who demand the best.
+                </p>
+                <a href="#collections" class="btn">Explore Our Journey</a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="collections" class="collections">
+        <div class="container">
+            <h2>Our Collections</h2>
+
+            <!-- Women's Collection Section -->
+            <div class="collection-section" id="womens-collection">
+                <h3>Women's Collection</h3>
+                <div class="grid">
+                    <a href="bridal.html" class="card">
+                        <img src="img/image1.jpg" alt="Elegant Bridal Wear from Women's Collection">
+                        <p class="card-title">Bridal Wear</p>
+                    </a>
+                    <a href="sarees.html" class="card">
+                        <img src="img/image2.jpg" alt="Exquisite Sarees from Women's Collection">
+                        <p class="card-title">Sarees</p>
+                    </a>
+                    <a href="lehenga-sets.html" class="card">
+                        <img src="img/image3.jpg" alt="Beautiful Lehenga Sets from Women's Collection">
+                        <p class="card-title">Lehenga Sets</p>
+                    </a>
+                    <a href="co-ord-sets.html" class="card">
+                        <img src="img/image4.jpg" alt="Stylish CO-ORD Sets from Women's Collection">
+                        <p class="card-title">CO-ORD Sets</p>
+                    </a>
+                </div>
+            </div>
+
+
+
+            <div class="collection-section" id="mens-collection">
+                <h3>Men's Collection</h3>
+                <div class="grid">
+                    <a href="sherwanis.html" class="card">
+                        <img src="img/image5.jpg" alt="Traditional Sherwanis from Men's Collection">
+                        <p class="card-title">Sherwanis</p>
+                    </a>
+                    <a href="kurta-sets.html" class="card">
+                        <img src="img/image6.jpg" alt="Elegant Kurta Sets from Men's Collection">
+                        <p class="card-title">Kurta Sets</p>
+                    </a>
+                    <a href="blazer-sets.html" class="card">
+                        <img src="img/image7.jpg" alt="Classic Blazer Sets from Men's Collection">
+                        <p class="card-title">Blazer Sets</p>
+                    </a>
+                    <a href="jacket-sets.html" class="card">
+                        <img src="img/image8.jpg" alt="Stylish Jacket Sets from Men's Collection">
+                        <p class="card-title">Jacket Sets</p>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Premium Clothing. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

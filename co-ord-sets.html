@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO-ORD Sets</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f5ec;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .product-item {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .product-item img {
+            width: 100%;
+            height: auto;
+        }
+        .product-info {
+            margin-top: 10px;
+        }
+        .product-info h2 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .product-info p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .price {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        @media (max-width: 768px) {
+            .product-item {
+                width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .product-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">CO-ORD Sets</div>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-item" onclick="window.location.href='product_details.html?id=11'">
+                <img src="img/image17.jpg" alt="Fig Handcrafted Kantha Overlayer Set - Pink">
+                <div class="product-info">
+                    <!-- <div class="brand">Designer Label</div> -->
+                    <div class="name">Fig Handcrafted Kantha Overlayer Set - Pink</div> 
+                    <div class="price">&#8377;19,000</div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-item" onclick="window.location.href='product_details.html?id=12'">
+                <img src="img/image18.jpg" alt="Uphill Hand-block Printed Linen Co-ord - Grey">
+                <div class="product-info">
+                    <!-- <div class="brand">Designer Label</div> -->
+                    <div class="name">Uphill Hand-block Printed Linen Co-ord - Grey</div>
+                    <div class="price">&#8377;15,000</div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-item" onclick="window.location.href='product_details.html?id=13'">
+                <img src="img/image19.jpg" alt="Grove Hand-block Printed Linen Co-ord - Sage">
+                <div class="product-info">
+                    <!-- <div class="brand">Designer Label</div> -->
+                    <div class="name">Grove Hand-block Printed Linen Co-ord - Sage</div>
+                    <div class="price">&#8377;13,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

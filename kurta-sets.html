@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurta Sets</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f5ec;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .product-item {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+            padding: 10px;
+            text-align: center;
+        }
+        .product-item img {
+            width: 100%;
+            height: auto;
+        }
+        .product-info {
+            margin-top: 10px;
+        }
+        .product-info h2 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .product-info p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .price {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .product-actions .btn {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            width: 30%;
+        }
+        .product-actions .btn:hover {
+            background-color: #444;
+        }
+        @media (max-width: 768px) {
+            .product-item {
+                width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .product-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Kurta Sets</div>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-item" onclick="window.location.href='product_details.html?id=17'">
+                <img src="img/image24.jpg" alt="Steel Blue Two Tone Spun Silk Kurta Set" height="400" width="300"/>
+                <div class="product-info">
+                    <!-- <div class="brand">Designer Label</div> -->
+                    <div class="name">Steel Blue Two Tone Spun Silk Kurta Set</div>
+                    <div class="price">₹74,000.00</div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-item" onclick="window.location.href='product_details.html?id=18'">
+                <img src="img/image25.jpg" alt="Khidr Printed Silk Kurta - Green" height="400" width="300"/>
+                <div class="product-info">
+                    <!-- <div class="brand">Designer Label</div> -->
+                    <div class="name">Khidr Printed Silk Kurta - Green</div>
+                    <div class="price">₹14,900.00</div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-item" onclick="window.location.href='product_details.html?id=19'">
+                <img src="img/image26.jpg" alt="Naksh Kurta - Rose Wood" height="400" width="300"/>
+                <div class="product-info">
+                    <!-- <div class="brand">Designer Label</div> -->
+                    <div class="name">Naksh Kurta - Rose Wood</div>
+                    <div class="price">₹10,200.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!--  -->

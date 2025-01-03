@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        /* Basic styling for Thank You page */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            padding: 0;
+            text-align: center;
+        }
+
+        .thank-you-container {
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            border-radius: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .thank-you-icon {
+            font-size: 50px;
+            color: #2ecc71;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .order-details {
+            font-size: 18px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .order-details p {
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #e64a3b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="thank-you-container">
+        <div class="thank-you-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>Thank You for Your Purchase!</h1>
+        <p>Your order has been successfully placed and will be processed soon.</p>
+
+        <div class="order-details">
+            <h2>Order Details</h2>
+            <!-- Display Order Number -->
+            <p><strong>Order Number:</strong> <span id="order-number"></span></p>
+            <!-- Display Total Amount -->
+            <p><strong>Total Amount:</strong> ₹<span id="total-amount"></span></p>
+            <!-- Display Payment Method -->
+            <p><strong>Payment Method:</strong> <span id="payment-method"></span></p>
+            <!-- Display Estimated Delivery -->
+            <p><strong>Estimated Delivery:</strong> <span id="delivery-date"></span></p>
+        </div>
+
+        <!-- Button to go back to homepage or another page -->
+        <a href="home.html" class="back-button">Go Back to Home</a>
+    </div>
+
+    <script>
+        // Retrieve the order details from sessionStorage
+        const orderDetails = JSON.parse(sessionStorage.getItem('orderDetails'));
+
+        // Check if order details exist in sessionStorage
+        if (orderDetails) {
+            // Display order details in the respective fields
+            document.getElementById('order-number').textContent = orderDetails.orderNumber;
+            document.getElementById('total-amount').textContent = orderDetails.totalAmount;
+            document.getElementById('payment-method').textContent = orderDetails.paymentMethod;
+            document.getElementById('delivery-date').textContent = orderDetails.deliveryDate;
+        } else {
+            // If no order details exist, display a message
+            document.querySelector('.thank-you-container').innerHTML = "<h1>Order Details Not Found</h1><p>Please try again later.</p>";
+        }
+    </script>
+
+</body>
+</html>
