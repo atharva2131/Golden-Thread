@@ -1,0 +1,487 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex; /* Enable flexbox */
+    justify-content: space-between; /* Space between title and profile menu */
+    align-items: center; /* Center content vertically */
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header:hover {
+    background-color: #444;
+}
+
+.profile-menu {
+    position: relative;
+    display: flex; /* Flex container for alignment */
+    align-items: center; /* Vertically center profile image */
+}
+
+.profile-menu img {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.profile-dropdown a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.profile-dropdown a:hover {
+    background-color: #ddd;
+}
+
+/* Show dropdown on hover */
+.profile-menu:hover .profile-dropdown {
+    display: block;
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #222;
+    color: #fff;
+    height: 100vh;
+    padding: 20px;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar:hover {
+    background-color: #1a1a1a;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+    padding-left: 20px;
+}
+
+.dropdown {
+    display: none;
+    background-color: #333;
+    padding-left: 20px;
+}
+
+.dropdown a {
+    padding: 5px 0;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    /*  margin-left: 250px; */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    transition: margin-left 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-list, .user-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.product-item, .user-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(33.333% - 30px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover, .user-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.product-item img, .user-item img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.product-item h3, .user-item h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.product-item p, .user-item p {
+    margin: 5px 0;
+}
+
+.product-item .price {
+    font-weight: bold;
+    color: #e91e63;
+}
+
+.product-item .actions, .user-item .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.product-item .actions button, .user-item .actions button {
+    background-color: #e91e63;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.product-item .actions button:hover, .user-item .actions button:hover {
+    background-color: #d81b60;
+    transform: scale(1.05);
+}
+
+.add-product-btn, .add-category-btn, .add-user-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    margin: 20px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-product-btn:hover, .add-category-btn:hover, .add-user-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.report-section {
+    margin-top: 20px;
+}
+
+.report-section h3 {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.report-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.report-section table, .report-section th, .report-section td {
+    border: 1px solid #ddd;
+}
+
+.report-section th, .report-section td {
+    padding: 12px;
+    text-align: left;
+}
+
+.report-section th {
+    background-color: #f4f4f4;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.order-table th, .order-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.order-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.order-actions button {
+    background-color: #e91e63;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.order-actions button:hover {
+    background-color: #d81b60;
+    transform: scale(1.05);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+
+/* Responsive Design */
+/* Fix for Sticky Sidebar on smaller screens */
+@media (max-width: 768px) {
+    .sidebar {
+        position: static; /* Remove sticky on small screens */
+        width: 100%;
+    }
+}
+
+/* Prevent excessive space on content when sidebar is present */
+@media (max-width: 1024px) {
+    .content {
+        margin-left: 0;
+    }
+}
+
+/* Adjust hover box shadow on product/item hover */
+.product-item:hover, .user-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+}
+
+/* Make tables responsive */
+.report-section table, .order-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto; /* Allow horizontal scrolling */
+}
+
+/* Button hover scaling tweak */
+.product-item .actions button:hover, 
+.add-product-btn:hover {
+    background-color: #d81b60;
+    transform: translateY(-2px); /* Less intrusive scaling */
+}
+@media screen and (max-width: 768px) {
+    .sidebar {
+        display: none;
+        position: fixed;
+        background-color: #333;
+        color: white;
+        width: 250px;
+        height: 100%;
+        z-index: 10;
+        padding: 20px;
+    }
+
+    .sidebar a {
+        color: white;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: none; /* Initially hidden */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #28a745;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+.dashboard-overview {
+    padding: 20px;
+}
+
+.dashboard-overview h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.key-metrics {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.key-metrics .metric {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 23%;
+}
+
+.key-metrics .metric h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.key-metrics .metric .metric-number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.performance-graph {
+    margin-bottom: 30px;
+}
+
+.performance-graph h3 {
+    font-size: 1.5rem;
+}
+
+.graph-placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: #ddd;
+    text-align: center;
+    line-height: 200px;
+    color: #888;
+}
+
+.recent-orders, .latest-users {
+    margin-bottom: 30px;
+}
+
+.recent-orders table, .latest-users table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-orders table th, .latest-users table th,
+.recent-orders table td, .latest-users table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.recent-orders table th, .latest-users table th {
+    background-color: #f4f4f4;
+}
+
+.quick-actions {
+    margin-top: 30px;
+}
+
+.quick-actions .actions button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.quick-actions .actions button:hover {
+    background-color: #444;
+}
+.dashboard-section {
+    display: none; /* Hide sections initially */
+}
+
+#overview {
+    display: block; /* Show the Dashboard overview section by default */
+}

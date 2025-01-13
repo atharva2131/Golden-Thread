@@ -1,0 +1,374 @@
+<html>
+
+<head>
+    <title>Golden Thread Admin Panel</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/admin.css  ">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Golden Thread Admin Panel</h1>
+        <div class="profile-menu">
+            <img alt="Admin profile picture" height="50" onclick="toggleProfileDropdown()"
+                src="https://storage.googleapis.com/a1aa/image/NDFWvsWvpfRmekFeYw7F9bdjVIWZHJUGNcRk6MwnJtuzcqEoA.jpg"
+                width="50" />
+            Admin
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="javascript:void(0)" onclick="showSection('profile')">
+                    Profile
+                </a>
+                <a href="javascript:void(0)" onclick="logout()">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <a href="javascript:void(0)" onclick="showDashboardSection('overview')">Dashboard</a>
+
+
+            <a href="javascript:void(0)" onclick="toggleDropdown('mens-dropdown')">Men's Section</a>
+            <div id="mens-dropdown" class="dropdown">
+                <a href="javascript:void(0)" onclick="showSection('mens-sherwani')">Sherwani</a>
+                <a href="javascript:void(0)" onclick="showSection('mens-kurta')">Kurta Sets</a>
+                <a href="javascript:void(0)" onclick="showSection('mens-indo-western')">Blazer Sets</a>
+                <button class="add-category-btn" onclick="addCategory('mens')">Add New Category</button>
+            </div>
+            <a href="javascript:void(0)" onclick="toggleDropdown('womens-dropdown')">Women's Section</a>
+            <div id="womens-dropdown" class="dropdown">
+                <a href="javascript:void(0)" onclick="showSection('womens-bridal')">Bridal Wear</a>
+                <a href="javascript:void(0)" onclick="showSection('womens-saree')">Sarees</a>
+                <a href="javascript:void(0)" onclick="showSection('womens-lehenga')">Lehengas</a>
+                <button class="add-category-btn" onclick="addCategory('womens')">Add New Category</button>
+            </div>
+            <a href="javascript:void(0)" onclick="showSection('orders')">Orders</a>
+            <a href="javascript:void(0)" onclick="showSection('users')">Users Management</a>
+            <a href="javascript:void(0)" onclick="showSection('reports')">Reports</a>
+            <a href="javascript:void(0)" onclick="showSection('settings')">Settings</a>
+        </div>
+        <!-- Main Dashboard Content -->
+
+
+
+        <div class="content">
+            <section class="section" id="mens-sherwani" style="display: none;">
+                <h2>Men's Sherwani</h2>
+                <div class="product-list">
+                    <div class="product-item">
+                        <img alt="Photo of a premium wedding Sherwani for men" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/XxM3Olfe7VsSrUq8HFqmifRLcUTQT6vQaIMuum7Z3opE5iEoA.jpg"
+                            width="300" />
+                        <h3 class="product-name">Premium Sherwani</h3>
+                        <p class="price">$500</p>
+                        <p class="description">Elegant and traditional Sherwani perfect for weddings.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img alt="Photo of a designer Sherwani for men" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/2.jpg" width="300" />
+                        <h3 class="product-name">Designer Sherwani</h3>
+                        <p class="price">$600</p>
+                        <p class="description">Designer Sherwani with intricate embroidery and details.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="add-product-btn" onclick="addProduct('mens-sherwani')">Add New Sherwani</button>
+            </section>
+            <section class="section" id="mens-kurta" style="display: none;">
+                <h2>Men's Kurta Sets</h2>
+                <div class="product-list">
+                    <div class="product-item">
+                        <img alt="Photo of a stylish Kurta set for men" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/RJHEmz9acYIJPJ9UkqU4W6xgbWntIP8RSBlQ7QTEh7cKXkAF.jpg"
+                            width="300" />
+                        <h3 class="product-name">Stylish Kurta Set</h3>
+                        <p class="price">$150</p>
+                        <p class="description">Comfortable and stylish Kurta set for various occasions.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img alt="Photo of a traditional Kurta set for men" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/3.jpg" width="300" />
+                        <h3 class="product-name">Traditional Kurta Set</h3>
+                        <p class="price">$120</p>
+                        <p class="description">Traditional Kurta set with classic design and comfort.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-product-btn" onclick="addProduct('mens-kurta')">Add New Kurta Set</button>
+            </section>
+
+            <section class="section" id="mens-indo-western" style="display: none;">
+                <h2>Blazer Sets</h2>
+                <div class="product-list" id="product-list">
+                    <div class="product-grid"></div>
+
+                    <!-- Dynamic content will be injected here -->
+                </div>
+
+                <button class="add-product-btn" onclick="addProduct('mens-indo-western')">Add New Indo-Western</button>
+            </section>
+
+            <section class="section" id="womens-bridal" style="display: none;">
+                <h2>Women's Bridal Wear</h2>
+                <div class="product-list">
+                    <div class="product-item">
+                        <img alt="Photo of a luxurious bridal wear for women" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/fH2vPWQ2PYV9GCeJ7cIYeWWeb9KC7PUa7pAE8FNI1C6uyFJQB.jpg"
+                            width="300" />
+                        <h3 class="product-name">Luxurious Bridal Wear</h3>
+                        <p class="price">$1000</p>
+                        <p class="description">Exquisite bridal wear designed for the perfect wedding day.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img alt="Photo of a designer bridal wear for women" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/5.jpg" width="300" />
+                        <h3 class="product-name">Designer Bridal Wear</h3>
+                        <p class="price">$1200</p>
+                        <p class="description">Designer bridal wear with luxurious details and craftsmanship.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-product-btn" onclick="addProduct('womens-bridal')">Add New Bridal Wear</button>
+            </section>
+
+            <section class="section" id="womens-saree" style="display: none;">
+                <h2>Women's Sarees</h2>
+                <div class="product-list">
+                    <div class="product-item">
+                        <img alt="Photo of a traditional Saree for women" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/ocFQMU3C7b5aMluOtOKtQxOLsjf1FZeVijtOgvr24pTmcRCUA.jpg"
+                            width="300" />
+                        <h3 class="product-name">Traditional Saree</h3>
+                        <p class="price">$200</p>
+                        <p class="description">Beautifully crafted traditional Saree for special occasions.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img alt="Photo of a designer Saree for women" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/6.jpg" width="300" />
+                        <h3 class="product-name">Designer Saree</h3>
+                        <p class="price">$250</p>
+                        <p class="description">Designer Saree with intricate patterns and luxurious fabric.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-product-btn" onclick="addProduct('womens-saree')">Add New Saree</button>
+            </section>
+
+            <section class="section" id="womens-lehenga" style="display: none;">
+                <h2>Women's Lehengas</h2>
+                <div class="product-list">
+                    <div class="product-item">
+                        <img alt="Photo of a designer Lehenga for women" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/HnbeaNQggHweYkGff8eVdw4reIP3LgIEazfytRMs4SBnTuIBKA.jpg"
+                            width="300" />
+                        <h3 class="product-name">Designer Lehenga</h3>
+                        <p class="price">$800</p>
+                        <p class="description">Stunning designer Lehenga with intricate embroidery.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img alt="Photo of a traditional Lehenga for women" height="400"
+                            src="https://storage.googleapis.com/a1aa/image/7.jpg" width="300" />
+                        <h3 class="product-name">Traditional Lehenga</h3>
+                        <p class="price">$700</p>
+                        <p class="description">Traditional Lehenga with classic design and rich fabric.</p>
+                        <div class="actions">
+                            <button onclick="editProduct(this)">Edit</button>
+                            <button onclick="deleteProduct(this)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="add-product-btn" onclick="addProduct('womens-lehenga')">Add New Lehenga</button>
+            </section>
+
+            <section class="section" id="orders" style="display: none;">
+                <h2>Orders</h2>
+                <p>Manage all customer orders here.</p>
+                <table class="order-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>John Doe</td>
+                            <td>Premium Sherwani</td>
+                            <td>1</td>
+                            <td>$500</td>
+                            <td>Pending</td>
+                            <td class="order-actions">
+                                <button onclick="editOrder(this)">Edit</button>
+                                <!-- <button onclick="updateOrder(this)">Update</button> -->
+                                <button onclick="deleteOrder(this)">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Jane Smith</td>
+                            <td>Designer Lehenga</td>
+                            <td>1</td>
+                            <td>$800</td>
+                            <td>Shipped</td>
+                            <td class="order-actions">
+                                <button onclick="editOrder(this)">Edit</button>
+                                <!-- <button onclick="updateOrder(this)">Update</button> -->
+                                <button onclick="deleteOrder(this)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- Add order management functionality here -->
+            </section>
+            <section class="section" id="users" style="display: none;">
+                <h2>Users Management</h2>
+                <p>Manage user information here.</p>
+                <div class="user-list">
+                    <div class="user-item">
+                        <h3>John Doe</h3>
+                        <p>Email: john.doe@example.com</p>
+                        <p>Password: ********</p>
+                        <div class="actions">
+                            <button onclick="editUser(this)">Edit</button>
+                            <!-- <button onclick="updateUser(this)">Update</button> -->
+                            <button onclick="deleteUser(this)">Delete</button>
+                        </div>
+                    </div>
+                    <div class="user-item">
+                        <h3>Jane Smith</h3>
+                        <p>Email: jane.smith@example.com</p>
+                        <p>Password: ********</p>
+                        <div class="actions">
+                            <button onclick="editUser(this)">Edit</button>
+                            <!-- <button onclick="updateUser(this)">Update</button> -->
+                            <button onclick="deleteUser(this)">Delete</button>
+                        </div>
+                    </div>
+                </div><!-- Add user management functionality here -->
+            </section>
+            <section class="section" id="reports" style="display: none;">
+                <h2>Reports</h2>
+                <p>View sales and performance reports here.</p>
+                <div class="report-section">
+                    <h3>Sales Report</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Total Sales</th>
+                                <th>Number of Orders</th>
+                                <th>Average Order Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-01-01</td>
+                                <td>$5000</td>
+                                <td>50</td>
+                                <td>$100</td>
+                            </tr>
+                            <tr>
+                                <td>2023-01-02</td>
+                                <td>$6000</td>
+                                <td>60</td>
+                                <td>$100</td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="report-section">
+                    <h3>Customer Report</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Email</th>
+                                <th>Total Orders</th>
+                                <th>Total Spend</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>John Doe</td>
+                                <td>john@example.com</td>
+                                <td>5</td>
+                                <td>$500</td>
+                            </tr>
+                            <tr>
+                                <td>Jane Smith</td>
+                                <td>jane@example.com</td>
+                                <td>3</td>
+                                <td>$300</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Add report generation functionality here -->
+            </section>
+            <!-- <button id="toggleSettingsBtn">Show Settings</button> -->
+
+            <section class="section" id="settings">
+                <h2>Settings</h2>
+                <p>Manage website settings here.</p>
+                <form id="settingsForm">
+                    <div class="form-group">
+                        <label for="siteTitle">Site Title:</label>
+                        <input type="text" id="siteTitle" name="siteTitle" placeholder="Enter site title">
+                    </div>
+                    <div class="form-group">
+                        <label for="siteDescription">Site Description:</label>
+                        <textarea id="siteDescription" name="siteDescription"
+                            placeholder="Enter site description"></textarea>
+                    </div>
+                    <button type="submit">Save Settings</button>
+                </form>
+            </section>
+        </div>
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
