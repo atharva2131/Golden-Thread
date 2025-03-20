@@ -5,447 +5,634 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7fa;
+        * {
             margin: 0;
-            padding: 0;
+           
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
         }
 
-        /* Container */
-        .container {
-            max-width: 950px;
-            margin: 30px auto;
-            padding: 30px;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Heading */
-        h1 {
-            font-size: 32px;
-            font-weight: 600;
+        /* Body */
+        body {
+            font-family: 'Lora', serif;
+            background-color: #ffffff;
             color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 15px;
         }
 
-        /* Cart Items */
-        #cart-items {
-            margin-bottom: 30px;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        a,
+        span,
+        li {
+            font-family: 'Lora', serif;
         }
 
-        .cart-item {
+
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Darker background */
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+            /* Darker shadow */
+            backdrop-filter: blur(20px);
+            transition: background 0.5s ease, box-shadow 0.3s ease;
+            opacity: 1;
+            /* Full opacity for header */
+        }
+
+        .navbar {
+            background: #ffffff;
+            /* Light background */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* Subtle border for contrast */
+            padding: 1.2rem 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.4s ease, box-shadow 0.3s ease;
+            opacity: 0.95;
+            /* Slight transparency */
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 18px;
-            margin-bottom: 20px;
-            border: 1px solid #f0f0f0;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Subtle black shadow */
+        }
+
+
+
+        /* Scrolled state with darker background */
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            /* Slightly darker when scrolled */
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.5);
+            opacity: 1;
+        }
+
+        /* Container for layout and spacing */
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Logo with brighter color for contrast */
+        .logo {
+            font-size: 1.7rem;
+            /* Font size of the logo */
+            font-weight: 700;
+            margin-left: 190px;
+            text-transform: uppercase;
+            color: #000000;
+            /* White color for logo */
+            position: relative;
+            letter-spacing: 1.2px;
+            text-decoration: none;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            /* Space between navigation items */
+            opacity: 0.85;
+        }
+
+        /* Clean Links with subtle hover effect */
+        .nav-links a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            /* Font size for links */
+            font-weight: 500;
+            color: #000000;
+            /* White text color */
+            padding: 5px 12px;
+            border-radius: 4px;
             transition: all 0.3s ease;
         }
 
-        .cart-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .cart-item img {
-            width: 120px;
-            height: auto;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .cart-item-info {
-            flex: 1;
-            margin-left: 20px;
-        }
-
-        .cart-item-info h3 {
-            margin: 0;
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .cart-item-info p {
-            margin: 5px 0;
-            color: #333;
-            /* Darker color for better visibility */
-            font-size: 16px;
-            /* Larger font size */
-            font-weight: bold;
-            /* Bold text */
-        }
-
-
-        .cart-item-remove {
-            color: #000000;
-            cursor: pointer;
-            font-size: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .cart-item p {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            /* Slightly reduced space between elements */
-            font-size: 12px;
-            /* Smaller font size */
-            color: #000;
-            /* Black text */
-        }
-
-        /* Quantity Buttons */
-        .quantity-decrease,
-        .quantity-increase {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 24px;
-            /* Smaller button width */
-            height: 24px;
-            /* Smaller button height */
-            font-size: 14px;
-            /* Smaller font size */
-            font-weight: bold;
-            color: #000;
-            /* Black text */
-            background-color: #fff;
-            /* White background */
-            border: 1px solid #000;
-            /* Simple black border */
-            border-radius: 3px;
-            /* Slightly rounded edges */
-            cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .quantity-decrease:hover,
-        .quantity-increase:hover {
-            background-color: #000;
-            /* Black background on hover */
-            color: #fff;
-            /* White text on hover */
-        }
-
-        .quantity-decrease:active,
-        .quantity-increase:active {
-            transform: scale(0.95);
-            /* Slight shrink on click */
-        }
-
-        .quantity-display {
-            font-size: 14px;
-            /* Slightly smaller font size */
-            font-weight: bold;
-            color: #000;
-            /* Black text */
-            width: 24px;
-            /* Smaller size to match buttons */
-            height: 24px;
-            /* Ensures consistency */
-            text-align: center;
-            background-color: #fff;
-            /* White background for display */
-            border: 1px solid #000;
-            /* Simple black border */
-            border-radius: 3px;
-            /* Matches buttons */
-            line-height: 24px;
-            /* Centers text vertically */
-        }
-
-
-        /* Cart Wrapper */
-        .cart-wrapper {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            margin-top: 30px;
-            padding: 20px;
-        }
-
-        /* Cart Left (Cart items) */
-        .cart-left {
-            flex: 1;
-        }
-
-        /* Cart Summary Section (Total + Buttons) */
-        .cart-summary {
-            width: 350px;
-            /* Slightly wider for more content space */
-            background: linear-gradient(135deg, #ffffff, #e6f7ff);
-            /* Light and clean gradient */
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            /* Softer shadow for a premium look */
-            border: 1px solid #d9d9d9;
-            /* Subtle border for definition */
-            font-family: 'Poppins', sans-serif;
-            /* Modern font for an elegant touch */
-            transition: transform 0.3s ease;
-        }
-
-        .cart-summary:hover {
-            transform: translateY(-5px);
-            /* Subtle lift effect on hover */
-        }
-
-        /* Total */
-        #cart-total {
-            font-size: 26px;
-            /* Slightly larger for emphasis */
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-            border-bottom: 2px solid #cccccc;
-            padding-bottom: 15px;
-            letter-spacing: 0.5px;
-            /* Adds a modern touch */
-        }
-
-        /* Checkout Button */
-        .checkout-button {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: #000000;
-            /* Black background */
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 700;
-            /* Stronger emphasis */
-            border-radius: 12px;
-            /* Softer corners */
-            margin-bottom: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .checkout-button:hover {
-            transform: scale(1.08);
-            /* Slight zoom-in on hover */
-            background: #333333;
-            /* Darker shade of black for hover */
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-            /* Stronger shadow */
-        }
-
-        .checkout-button:active {
-            transform: scale(0.95);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            /* Softer shadow */
-        }
-
-
-        /* Clear Cart Button */
-        .clear-cart-button {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background-color: #000000;
-            /* Solid black background */
-            color: white;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .clear-cart-button:hover {
-            background-color: #333333;
-            /* Darker shade of black on hover */
+        /* Subtle glow and scaling effect on hover */
+        .nav-links a:hover {
+            color: #FFD700;
+            /* Vibrant gold color */
             transform: scale(1.05);
-            /* Slight zoom-in */
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .clear-cart-button:active {
-            transform: scale(0.95);
-            /* Slight zoom-out on click */
-            background-color: #000000;
-            /* Return to solid black */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
 
-        /* Cart Item Styling */
-        .cart-item {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: box-shadow 0.3s ease;
+        .nav-links .dropdown {
+            position: relative;
         }
 
-        .cart-item:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .cart-item img {
-            width: 100px;
-            height: 100px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .cart-item-info {
-            margin-left: 20px;
-            flex: 1;
-        }
-
-        .cart-item-info h3 {
+        /* Dropdown menu container */
+        .nav-links .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            /* Positions the menu below the link */
+            left: 0;
+            background-color: #ffffff;
+            /* Pure white background */
+            list-style: none;
+            padding: 0;
+            /* Remove extra padding around items */
             margin: 0;
-            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow */
+            z-index: 1000;
+            min-width: 200px;
+            /* Ensure consistent width for dropdown */
+            border-radius: 4px;
+            /* Smooth border corners */
+        }
+
+        /* Individual menu items */
+        .nav-links .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            /* Ensure items span the full width of the dropdown */
+        }
+
+        /* Links inside the dropdown menu */
+        .nav-links .dropdown-menu a {
+            display: block;
+            width: 100%;
+            /* Ensure the link takes the full width of the menu */
+            padding: 0.8rem 1rem;
+            /* Adjust padding for consistent spacing */
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #000000;
+            /* Black text for dropdown items */
+            transition: all 0.3s ease;
+            background-color: transparent;
+            /* Default transparent background */
+            text-align: left;
+            /* Align text to the left */
+            box-sizing: border-box;
+            /* Include padding in width calculations */
+        }
+
+        /* Hover effect for dropdown menu items */
+        .nav-links .dropdown-menu a:hover {
+            background-color: #000000;
+            /* Vibrant gold highlight */
+            color: #ffffff;
+            /* White text for contrast */
+        }
+
+        /* Show dropdown menu on hover */
+        .nav-links .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Adjust dropdown alignment for responsive view */
+        .nav-links .dropdown-menu {
+            left: auto;
+            /* Reset alignment */
+            right: 0;
+            /* Align to the right */
+        }
+
+
+
+
+
+
+        /* For smaller screens (Mobile) */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.6rem 15px;
+                /* Adjust padding for small screens */
+            }
+
+            .logo {
+                font-size: 1.6rem;
+                /* Slightly smaller logo size */
+            }
+
+            .nav-links {
+                gap: 1rem;
+                /* Reduced gap for smaller screens */
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                /* Slightly smaller font size for links */
+            }
+        }
+
+
+        /* Wrapper for the cart link */
+        /* Wrapper for the cart link */
+        a {
+            position: relative;
+            /* Ensure both the icon and count stay in the same flow */
+            display: inline-flex;
+            /* Aligns both icon and count horizontally */
+            align-items: center;
+            /* Vertically centers the icon and count */
+            color: #fff;
+            text-decoration: none;
+            margin-right: 100px;
+            /* Adjust space to the right of the cart */
+        }
+
+        /* Cart icon styling */
+        a i.fas.fa-shopping-cart {
+            font-size: 24px;
+            /* Adjust the icon size */
+        }
+
+        /* Cart count styling */
+        .cart-count {
+            background-color: transparent;
+            /* Makes the background transparent */
+            padding: 5px 10px;
+            /* Adjust padding for better visibility */
+            /* Optional: Add a border to make the count visible */
+            /* Keep the circular shape */
+            font-size: 16px;
+            /* Font size of the count */
+            font-weight: bold;
+            color: #000000;
+            /* Change the text color to match the border */
+            /* Space between the cart icon and count */
+        }
+
+
+
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+                /* Reduced padding on mobile */
+            }
+
+            .navbar .logo {
+                font-size: 24px;
+                /* Smaller logo font size on mobile */
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                /* Reduced gap between links on mobile */
+                align-items: center;
+            }
+
+            .nav-links a {
+                font-size: 20px;
+                /* Increased link size for touch-friendly targets */
+            }
+
+            .cart-count {
+                top: -5px;
+                right: -5px;
+            }
+        }
+
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .product-section {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        .cart-total-section {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            /* Space above the cart section */
+            width: 40%;
+            /* Match width with product section */
+            margin: 0 auto;
+            /* Center the cart total section */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Add shadow for a box effect */
+            background-color: #ffffff;
+            /* White background for clean design */
+        }
+
+        .cart-total-section h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+            /* Center the heading text */
+            margin-bottom: 20px;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            color: #888;
+            font-weight: normal;
+        }
+
+        td {
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .product-info img {
+            width: 95px;
+            height: 143 px;
+            object-fit: cover;
+            margin-right: 15px;
+            border-radius: 8px;
+            /* Add rounded corners to the image */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for the image */
+        }
+
+        .product-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-details div {
+            margin-bottom: 8px;
+            font-size: 14px;
             color: #333;
         }
 
-        .cart-item-info p {
-            margin: 5px 0;
-            color: #777;
+        .product-details .name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .product-details .size,
+        .product-details .color {
             font-size: 14px;
         }
 
-        /* Empty Cart Message */
-        #empty-cart-message {
-            text-align: center;
-            color: #888;
-            font-size: 16px;
-            margin-top: 30px;
-            display: none;
-        }
-
-
-
-        /* Total Section */
-        #cart-total {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333;
-            text-align: right;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #f0f0f0;
-        }
-
-        /* Button Container */
-        .button-container {
+        .product-details .color {
             display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            /* Space between the buttons */
-            margin-top: 20px;
-        }
-
-        /* Checkout Button */
-        /* Checkout Button */
-        .checkout-button {
-            display: inline-block;
-            width: auto;
-            padding: 14px;
-            background: #000000;
-            /* Solid black background */
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 6px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .checkout-button:hover {
-            background: #333333;
-            /* Darker black shade for hover */
-            transform: translateY(-3px);
-        }
-
-        .checkout-button:active {
-            transform: translateY(1px);
+            align-items: center;
         }
 
 
-        /* Clear Cart Button */
-        button {
-            padding: 12px 20px;
-            background-color: #000000;
-            /* Solid black background */
-            color: white;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 5px;
+
+        .product-info .remove {
+            margin-left: 15px;
+            color: #ccc;
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
-        button:hover {
-            background-color: #333333;
-            /* Darker shade of black on hover */
+        .product-info .remove:hover {
+            color: #888;
         }
 
-        button:active {
-            background-color: #000000;
-            /* Return to solid black when active */
+        .quantity-controls {
+            display: flex;
+            align-items: center;
         }
 
-        /* Empty Cart Message */
+        .quantity-controls button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .quantity-controls input {
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ccc;
+            margin: 0 5px;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            text-align: center; /* Center the text */
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Arrange items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+        }
+        
+        .cart-total table {
+            width: auto;
+            margin: 0 auto; /* Center the table */
+            border-collapse: collapse; /* Optional: Remove gaps between table borders */
+        }
+        
+        .cart-total th,
+        .cart-total td {
+            padding: 10px 20px;
+            text-align: right; /* Keep text aligned to the right inside cells */
+        }
+        
+        .cart-total th {
+            background-color: #f9f9f9;
+            color: #000000;
+            font-weight: normal;
+        }
+        
+        .cart-total td {
+            border-bottom: none;
+        }
+        
+        .cart-total .total {
+            font-weight: bold;
+        }
+        
+        .cart-total .checkout-btn {
+            display: block; /* Ensure the button spans a block */
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            margin-top: 15px;
+            cursor: pointer;
+            text-align: center; /* Center the button's text */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+            width: auto; /* Ensure the width adjusts to content */
+        }
+        
+        .cart-total .checkout-btn:hover {
+            background-color: #333; /* Darken the button on hover */
+        }
+        
+        
+
+        .color-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+            vertical-align: middle;
+            /* Ensures the circle is aligned with the middle of the text */
+        }
+
+        @media (max-width: 768px) {
+            .product-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .product-info img {
+                margin-bottom: 10px;
+            }
+
+            .quantity-controls {
+                margin-top: 10px;
+            }
+
+            .cart-total {
+                text-align: left;
+            }
+
+            .cart-total table {
+                width: 100%;
+            }
+        }
         #empty-cart-message {
+            display: none;
             text-align: center;
             color: #888;
             font-size: 16px;
+            font-weight: bold;
+            padding: 20px;
+            background-color: #f7f7f7;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             margin-top: 30px;
-            display: none;
         }
+        
     </style>
 </head>
 
 <body>
-    <div class="cart-wrapper">
-        <div class="cart-left">
-            <h1>Your Cart</h1>
-            <div id="cart-items">
-                <!-- Cart items will be dynamically added here -->
-            </div>
-            <p id="empty-cart-message" class="empty-cart" style="display: none;">Your cart is empty.</p>
-        </div>
+    <header>
+        <nav class="navbar">
+            <!-- <div class="container"> -->
+            <a href="home.html" class="logo">Golden Thread</a>
+            <ul class="nav-links">
 
-        <!-- Cart Summary Section -->
-        <div class="cart-summary">
-            <div id="cart-total" class="total">Total: ₹0</div>
-            <a href="payment.html" id="checkout-button" class="checkout-button">Proceed to Checkout</a>
-            <button onclick="clearCart()" class="clear-cart-button">Clear Cart</button>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-link">Men</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sherwanis.html">Sherwanis</a></li>
+                        <li><a href="kurta-sets.html">Kurta Sets</a></li>
+                        <li><a href="blazer-sets.html">Blazers</a></li>
+                        <li><a href="jacket-sets.html">Jacket Sets</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-link">Women</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bridal.html">Bridal Wear</a></li>
+                        <li><a href="sarees.html">Sarees</a></li>
+                        <li><a href="lehenga-sets.html">Lehenga Sets</a></li>
+                        <li><a href="co-ord-sets.html">Co-ord Sets</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="view_cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="cart-count">0</span> <!-- Cart count here -->
+                    </a>
+                </li>
+            </ul>
+            <!-- </div> -->
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Your Cart</h1>
+        <div class="product-section">
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </tbody>
+            </table>
+            <p id="empty-cart-message" style="display: none; text-align: center; color: #888;">Your cart is empty.</p>
         </div>
+        <div class="cart-total-section">
+            <h2>Cart Total</h2>
+            <div class="cart-total">
+                <table>
+                    <tr>
+                        <th>Subtotal:</th>
+                        <td id="cart-subtotal">₹0.00</td>
+                    </tr>
+                    <tr>
+                        <th class="total">Total:</th>
+                        <td id="cart-total">₹0.00</td>
+                    </tr>
+                </table>
+                <a class="checkout-btn" href="payment.html">Proceed to Checkout</a>
+            </div>
+        </div>
+        <p id="empty-cart-message" style="display: none; text-align: center; color: #888;">Your cart is empty.</p>
     </div>
 
-
     <script>
-        // Load cart items and display them
         function loadCartItems() {
             const cartItemsContainer = document.getElementById('cart-items');
+            const cartSubtotalElement = document.getElementById('cart-subtotal');
             const cartTotalElement = document.getElementById('cart-total');
-            const checkoutButton = document.getElementById('checkout-button');
             const emptyCartMessage = document.getElementById('empty-cart-message');
 
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -456,112 +643,78 @@
             // Show empty cart message if cart is empty
             if (!Array.isArray(cart) || cart.length === 0) {
                 emptyCartMessage.style.display = 'block';
-                cartTotalElement.style.display = 'none';
-                checkoutButton.style.display = 'none';
+                cartSubtotalElement.innerText = '₹0.00';
+                cartTotalElement.innerText = '₹0.00';
                 return;
             }
 
             // Hide empty cart message and show cart items
             emptyCartMessage.style.display = 'none';
-            cartTotalElement.style.display = 'block';
-            checkoutButton.style.display = 'block';
 
             cart.forEach((item, index) => {
-                const cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-
                 const sanitizedPrice = parseFloat(item.price.replace(/[^\d.-]/g, '')) || 0;
                 const sanitizedQuantity = parseInt(item.quantity, 10) || 1;
+                const subtotal = sanitizedPrice * sanitizedQuantity;
 
+                const cartItem = document.createElement('tr');
                 cartItem.innerHTML = `
-                <img src="${item.image || 'default-image.jpg'}" alt="Image of ${item.name}">
-                <div class="cart-item-info">
-                    <h3>${item.name}</h3> 
-                    <p>Price: ₹${sanitizedPrice.toFixed(2)}</p>
-                    <p>
-                        Quantity:
-                        <button class="quantity-decrease" data-index="${index}" aria-label="Decrease quantity">-</button>
-                        <span class="quantity-display">${sanitizedQuantity}</span>
-                        <button class="quantity-increase" data-index="${index}" aria-label="Increase quantity">+</button>
-                    </p>
-                </div>
-                <span class="cart-item-remove" data-index="${index}" aria-label="Remove item"><i class="fas fa-trash-alt"></i></span>
-            `;
-
+                    <td>
+                        <div class="product-info">
+                            <span class="remove" data-index="${index}" aria-label="Remove item"><i class="fas fa-times"></i></span>
+                            <img src="${item.image || 'default-image.jpg'}" alt="Image of ${item.name}">
+                            <div>
+                                <div>${item.name}</div>
+                                <div>Size: ${item.size || 'N/A'}</div>
+                                <div>Color: <span class="color-circle" style="background-color: ${item.color || '#ccc'};"></span></div> <!-- Color displayed -->
+                            </div>
+                        </div>
+                    </td>
+                    <td>₹${sanitizedPrice.toLocaleString()}</td>
+                    <td>
+                        <div class="quantity-control">
+                            <button class="quantity-btn decrease" data-index="${index}">-</button>
+                            <span class="quantity">${sanitizedQuantity}</span>
+                            <button class="quantity-btn increase" data-index="${index}">+</button>
+                        </div>
+                    </td>
+                    <td>₹${subtotal.toLocaleString()}</td>
+                `;
                 cartItemsContainer.appendChild(cartItem);
 
-                totalPrice += sanitizedPrice * sanitizedQuantity || 0;
+                totalPrice += subtotal;
             });
 
-            cartTotalElement.innerText = `Total: ₹${totalPrice.toFixed(2)}`;
+            cartSubtotalElement.innerText = `₹${totalPrice.toLocaleString()}`;
+            cartTotalElement.innerText = `₹${totalPrice.toLocaleString()}`;
 
-            // Add event listeners for increase, decrease, and remove buttons
-            document.querySelectorAll('.quantity-increase').forEach(button => {
-                button.addEventListener('click', function () {
-                    const index = parseInt(this.getAttribute('data-index'), 10);
-                    if (!isNaN(index)) {
-                        updateCartItemQuantity(index, 1); // Increase quantity
-                    }
+            // Update event listener for removing cart items
+            cartItemsContainer.querySelectorAll('.remove').forEach(removeButton => {
+                removeButton.addEventListener('click', () => {
+                    const index = removeButton.getAttribute('data-index');
+                    cart.splice(index, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    loadCartItems();
                 });
             });
 
-            document.querySelectorAll('.quantity-decrease').forEach(button => {
-                button.addEventListener('click', function () {
-                    const index = parseInt(this.getAttribute('data-index'), 10);
-                    if (!isNaN(index)) {
-                        updateCartItemQuantity(index, -1); // Decrease quantity
+            // Update event listeners for quantity buttons
+            cartItemsContainer.querySelectorAll('.quantity-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = button.getAttribute('data-index');
+                    const cartItem = cart[index];
+                    if (button.classList.contains('increase')) {
+                        cartItem.quantity += 1;
+                    } else if (button.classList.contains('decrease') && cartItem.quantity > 1) {
+                        cartItem.quantity -= 1;
                     }
+
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    loadCartItems(); // Refresh the cart after updating quantity
                 });
             });
-
-            document.querySelectorAll('.cart-item-remove').forEach(removeButton => {
-                removeButton.addEventListener('click', function () {
-                    const index = parseInt(this.getAttribute('data-index'), 10);
-                    if (!isNaN(index)) {
-                        removeCartItem(index);
-                    }
-                });
-            });
-            // Your JavaScript code here
-            function updateCartCount() {
-                let cartCount = localStorage.getItem('cartCount');
-                cartCount = cartCount ? parseInt(cartCount) : 0;
-                document.getElementById('cart-count').textContent = cartCount;
-            }
-
-            function addToCart() {
-                let cartCount = localStorage.getItem('cartCount');
-                cartCount = cartCount ? parseInt(cartCount) : 0;
-                cartCount += 1;
-                localStorage.setItem('cartCount', cartCount);
-                updateCartCount();
-            }
-
-            document.addEventListener('DOMContentLoaded', function () {
-                updateCartCount();
-            });
-
-
-        }
-         // Function to remove cart item
-         function removeCartItem(index) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (Array.isArray(cart) && index >= 0 && index < cart.length) {
-                cart.splice(index, 1);
-                localStorage.setItem('cart', JSON.stringify(cart));
-                alert("Item removed from the cart.");
-                loadCartItems();
-            }
         }
 
-        // Function to clear the cart
-        function clearCart() {
-            localStorage.removeItem('cart');
-            alert("Your cart has been cleared.");
-            loadCartItems();  // Reload the cart after clearing
-        }  
 
-        // Function to update cart item quantity
         function updateCartItemQuantity(index, change) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             if (Array.isArray(cart) && index >= 0 && index < cart.length) {
@@ -572,16 +725,34 @@
             }
         }
 
-       
-
+        function removeCartItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (Array.isArray(cart) && index >= 0 && index < cart.length) {
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCartItems(); // Reload cart to reflect the changes
+            }
+        }
 
         // Load cart items on page load
         document.addEventListener('DOMContentLoaded', loadCartItems);
 
+        // Function to update Cart Count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+
+            if (cartCountElement) {
+                cartCountElement.textContent = cart.length;
+            }
+        }
+
+        // Update cart count on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCount(); // Updates the cart count
+        });
 
     </script>
-    <script src="   script.js"></script>
-
 </body>
 
 </html>

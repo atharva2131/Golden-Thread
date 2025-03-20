@@ -1,40 +1,65 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lora', serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #000000;  /* Light text for better contrast on dark background */
+    color: #000000;
+    /* Light text for better contrast on dark background */
     line-height: 1.6;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+li {
+    font-family: 'Lora', serif;
+}
+
+
 header {
-    background-color: rgba(0, 0, 0, 0.9);  /* Darker background */
-    color: #fff;
+    background-color: rgba(255, 255, 255, 0.4);
+    /* Darker background */
+    color: #ffffff;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);  /* Darker shadow */
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+    /* Darker shadow */
     backdrop-filter: blur(20px);
     transition: background 0.5s ease, box-shadow 0.3s ease;
-    opacity: 1;  /* Full opacity for header */
+    opacity: 1;
+    /* Full opacity for header */
 }
 
 /* Navbar Styling with reduced height and black-based opacity */
 .navbar {
-    background: rgba(0, 0, 0, 0.85);  /* Dark background */
+    background: #ffffff;
+    /* Light background */
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* Subtle border for contrast */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle border for contrast */
     padding: 0.6rem 1.2rem;
     position: sticky;
     top: 0;
     z-index: 1000;
     transition: background 0.4s ease, box-shadow 0.3s ease;
-    opacity: 0.95;  /* Slight transparency */
+    opacity: 0.95;
+    /* Slight transparency */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Subtle black shadow added */
 }
+
 
 /* Scrolled state with darker background */
 .navbar.scrolled {
-    background: rgba(0, 0, 0, 0.95);  /* Slightly darker when scrolled */
+    background: rgba(0, 0, 0, 0.95);
+    /* Slightly darker when scrolled */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     opacity: 1;
 }
@@ -52,11 +77,14 @@ header {
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
+    font-family: Montserrat;
     text-transform: uppercase;
-    color: #fff;  /* White color for logo */
+    color: #000000;
+    /* White color for logo */
     position: relative;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.5px;
     text-decoration: none;
+    padding-left: 50px;
 }
 
 /* Simplified Navigation Links */
@@ -72,18 +100,194 @@ header {
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 500;
-    color: #fff;  /* White text color */
+    color: #000000;
+    /* White text color */
     padding: 5px 12px;
     border-radius: 4px;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
+
 }
 
 /* Subtle glow and scaling effect on hover */
 .nav-links a:hover {
-    color: #e67e22;  /* Vibrant orange color */
+    color: #FFD700;
+    /* Vibrant orange color */
     transform: scale(1.05);
 }
+
+header {
+    background-color: rgba(255, 255, 255, 0.4);
+    /* Darker background */
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+    /* Darker shadow */
+    backdrop-filter: blur(20px);
+    transition: background 0.5s ease, box-shadow 0.3s ease;
+    opacity: 1;
+    /* Full opacity for header */
+}
+
+/* Navbar Styling with reduced height and black-based opacity */
+.navbar {
+    background: #ffffff;
+    /* Light background */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle border for contrast */
+    padding: 0.6rem 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.4s ease, box-shadow 0.3s ease;
+    opacity: 0.95;
+    /* Slight transparency */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Subtle black shadow added */
+}
+
+
+/* Scrolled state with darker background */
+.navbar.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+    /* Slightly darker when scrolled */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+}
+
+/* Container for layout and spacing */
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo with brighter color for contrast */
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: Montserrat;
+    text-transform: uppercase;
+    color: #000000;
+    /* White color for logo */
+    position: relative;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    padding-left: 50px;
+}
+
+/* Simplified Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    opacity: 0.85;
+}
+
+/* Clean Links with subtle hover effect */
+.nav-links a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000000;
+    /* White text color */
+    padding: 5px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+}
+
+/* Subtle glow and scaling effect on hover */
+.nav-links a:hover {
+    color: #FFD700;
+    /* Vibrant orange color */
+    transform: scale(1.05);
+}
+
+/* Men and Women Dropdown Styling */
+
+/* Parent dropdown container */
+.nav-links .dropdown {
+    position: relative;
+}
+
+/* Dropdown link styling */
+.nav-links .dropdown-link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000000;
+    /* Black text color for consistency */
+    padding: 5px 12px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for dropdown link */
+.nav-links .dropdown-link:hover {
+    color: #FFD700;
+    /* Vibrant orange on hover */
+    transform: scale(1.05);
+}
+
+/* Dropdown menu container */
+.nav-links .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Positions the menu below the link */
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    /* Slightly transparent white */
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow */
+    z-index: 1000;
+    min-width: 180px;
+    /* Ensures consistent width for dropdown */
+}
+
+/* Individual menu items */
+.nav-links .dropdown-menu li {
+    margin: 0;
+}
+
+/* Links inside the dropdown menu */
+.nav-links .dropdown-menu a {
+    display: block;
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000000;
+    /* Black text for dropdown items */
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for dropdown menu items */
+.nav-links .dropdown-menu a:hover {
+    background-color: #000000;
+    /* Vibrant orange highlight */
+    color: #ffffff;
+    /* White text for contrast */
+}
+
+/* Show dropdown menu on hover */
+.nav-links .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Adjust dropdown alignment for responsive view */
+.nav-links .dropdown-menu {
+    right: 0;
+    /* Aligns dropdown to the right for better layout in smaller screens */
+}
+
 
 
 /* Responsive Design */
@@ -91,7 +295,8 @@ header {
     .nav-links {
         display: none;
         flex-direction: column;
-        background: rgba(0, 0, 0, 0.95);  /* Dark background for mobile menu */
+        background: rgba(255, 255, 255, 0.95);
+        /* white background for mobile menu */
         padding: 1rem;
         border-radius: 10px;
     }
@@ -103,7 +308,7 @@ header {
     .menu-toggle {
         display: block;
         font-size: 2rem;
-        color: #ff6f61;
+        color: #000000;
         cursor: pointer;
     }
 }
@@ -114,6 +319,7 @@ header {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -130,9 +336,10 @@ header {
 .hero {
     position: relative;
     color: white;
-    padding: 100px 0;   
+    padding: 100px 0;
     overflow: hidden;
-    padding-top: 25%; /* Ensures the content doesn't overflow */
+    padding-top: 25%;
+    /* Ensures the content doesn't overflow */
 }
 
 .hero .hero-image {
@@ -143,7 +350,8 @@ header {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    z-index: -2; /* Keeps the image in the background */
+    z-index: -2;
+    /* Keeps the image in the background */
 }
 
 .hero .hero-overlay {
@@ -152,14 +360,20 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Dark overlay with some transparency */
-    z-index: -1; /* Places overlay between image and text */
+    background: rgba(0, 0, 0, 0.4);
+    /* Dark overlay with some transparency */
+    z-index: -1;
+    /* Places overlay between image and text */
 }
 
-.hero h1, .hero p, .hero .btn {
-    position: relative; /* Ensures these elements are above the image and overlay */
+.hero h1,
+.hero p,
+.hero .btn {
+    position: relative;
+    /* Ensures these elements are above the image and overlay */
     z-index: 1;
-    color: #000000; /* Makes text color white to improve readability */
+    color: #000000;
+    /* Makes text color white to improve readability */
 }
 
 .hero h1 {
@@ -167,89 +381,147 @@ header {
     text-align: left;
     margin-left: 100px;
     margin-bottom: 20px;
+    font-weight: normal; /* Remove bold */
 }
+
 
 .hero p {
     font-size: 1.25rem;
     text-align: left;
     margin-left: 60px;
-    margin-bottom: 20px; /* Adjust margin to create appropriate spacing */
+    margin-bottom: 20px;
+    /* Adjust margin to create appropriate spacing */
 }
 
 .hero .btn {
-    display: inline-block; /* Ensures the button behaves like a block element for proper positioning */
-    margin-top: 10px; /* Adds spacing between the paragraph and button */
+    display: inline-block;
+    margin-top: 10px;
     padding: 10px 20px;
-    background-color: #000; /* Black background */
-    color: #fff;
+    background-color: transparent;
+    /* Remove the black background */
+    color: #000;
+    /* Text color set to black */
     text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+        border: 1.5px solid #000;
+    /* Add black border */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effect */
     margin-left: 200px;
 }
 
 .hero .btn:hover {
-    background-color: #333;  /* Darker shade for hover effect */
+    background-color: #000;
+    /* On hover, set background to black */
+    color: #fff;
+    /* Change text color to white when hovering */
 }
+
 
 
 .spacer {
-    height: 50px; /* Adjust height as needed */
-    display: flex; /* Center the text */
-    justify-content: center; /* Horizontally center the text */
-    align-items: center; /* Vertically center the text */
-    background-color: transparent; /* Optional: Invisible background */
-    font-size: 24px; /* Adjust text size */
-    font-weight: bold; /* Make the text bold */
-    color: #333; /* Adjust text color */
-    text-transform: uppercase; /* Optional: Make the text uppercase */
+    height: 50px;
+    /* Adjust height as needed */
+    display: flex;
+    /* Center the text */
+    justify-content: center;
+    /* Horizontally center the text */
+    align-items: center;
+    /* Vertically center the text */
+    background-color: transparent;
+    /* Optional: Invisible background */
+    font-size: 24px;
+    /* Adjust text size */
+    color: #333;
+    /* Adjust text color */
+    text-transform: uppercase;
+    /* Optional: Make the text uppercase */
+    letter-spacing: 5px;
 }
 
 .video-container {
-    max-width: 100%; /* Ensures the video does not exceed the container's width */
-    margin: 0 auto; /* Centers the container if there's extra space */
-    overflow: hidden; /* Ensures no overflow issues */
+    max-width: 100%;
+    /* Ensures the video does not exceed the container's width */
+    margin: 0 auto;
+    /* Centers the container if there's extra space */
+    overflow: hidden;
+    /* Ensures no overflow issues */
 }
 
 .responsive-video {
-    width: 100%; /* Makes the video scale to fit the container */
-    height: auto; /* Keeps the aspect ratio of the video */
-    display: block; /* Removes unnecessary inline spacing */
+    width: 100%;
+    /* Makes the video scale to fit the container */
+    height: auto;
+    /* Keeps the aspect ratio of the video */
+    display: block;
+    /* Removes unnecessary inline spacing */
 }
 
 
 
-.about, .collections, .contact {
+.about,
+.collections,
+.contact {
     padding: 4rem 1rem;
     text-align: center;
     background-color: #f9f9f9;
 }
 
-.about h2, .collections h2, .contact h2 {
-    font-size: 2.5rem;
+.about h2,
+.collections h2,
+.contact h2 {
+    font-size: 2.0rem;
     margin-bottom: 1.5rem;
+    font-family: Crimson Pro;
+    font-weight: 300;
+    line-height: 33px;
+    letter-spacing: 2.90px;
     text-transform: uppercase;
     color: #1a1a1a;
+
 }
+
+.about h3,
+.collections h3,
+.contact h3 {
+    font-size: 1.0rem;
+    font-family: monospaceCrimson Pro;
+    margin-top: 4.0rem;
+    font-weight: 300;
+    letter-spacing: 2.90px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+
+}
+
+
 .about-us {
-    padding: 60px 20px;
-    background-color: #f9f9f9; /* Soft background color */
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* Vertically aligns text and image */
+    justify-content: flex-start;
+    /* Positions text and image in their respective areas */
+    gap: 20px;
+    /* Adds space between the text and image */
+    height: 100vh;
+    /* Full viewport height */
+    padding: 20px;
+    margin-left: 20px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    /* Optional background color */
+    position: relative;
+    /* Ensures positioning works correctly */
 }
-
-
 
 .about-content {
     flex: 1;
-    max-width: 600px;
+    /* Takes up available space */
+    max-width: 50%;
+    /* Ensures text doesn't stretch too wide */
 }
 
 .about-content h2 {
     font-size: 32px;
-    font-weight: bold;
     margin-bottom: 20px;
     color: #333;
 }
@@ -264,48 +536,120 @@ header {
 .about-content .btn {
     display: inline-block;
     padding: 12px 24px;
-    background-color: #000;
-    color: #fff;
+    background-color: transparent;
+    /* Remove the black background */
+    color: #000;
+    /* Text color set to black */
     text-decoration: none;
     font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    max-width: 100%;  /* Ensures button does not overflow the container */
-    box-sizing: border-box;  /* Makes padding part of the element's width */
+    
+    border: 1.5px solid #000;
+    /* Add black border */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effect */
 }
 
-/* Hover Effect */
 .about-content .btn:hover {
-    background-color: #333; /* Darker hover effect */
+    background-color: #000;
+    /* On hover, set background to black */
+    color: #fff;
+    /* Change text color to white when hovering */
 }
 
-/* Medium Screens - Tablets */
+.about-image {
+    position: absolute;
+    /* Absolute positioning to move the image */
+    right: 80px;
+    /* Moves the image to the right edge of the screen */
+    top: 50%;
+    /* Vertically centers the image */
+    transform: translateY(-50%);
+    /* Adjusts for perfect centering */
+    max-width: 40%;
+    /* Limits the image width */
+}
+
+.about-image img {
+    width: 100%;
+    /* Responsive image */
+    height: auto;
+    /* Maintains aspect ratio */
+    border-radius: 0px;
+    /* Optional: rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Optional: subtle shadow */
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .about-us {
+        flex-direction: column;
+        /* Stack the text and image vertically */
+        height: auto;
+        /* Remove fixed height */
+    }
+
+    .about-content {
+        max-width: 100%;
+        /* Use full width for text */
+        text-align: center;
+        /* Center text for smaller screens */
+    }
+
+    .about-image {
+        position: relative;
+        /* Reset absolute positioning */
+        right: auto;
+        /* Remove right alignment */
+        top: auto;
+        /* Remove top alignment */
+        transform: none;
+        /* Remove transformation */
+        max-width: 60%;
+        /* Reduce image size */
+        margin: 20px auto 0;
+        /* Center image with margin */
+    }
+}
+
 @media (max-width: 768px) {
-    .about-content .btn {
-        padding: 10px 20px;
-        font-size: 14px;
-        width: auto;  /* Allow the button width to adjust based on text */
+    .about-content h2 {
+        font-size: 28px;
+        /* Smaller font size for smaller screens */
+    }
+
+    .about-content p {
+        font-size: 16px;
+        /* Reduce paragraph font size */
+    }
+
+    .about-image {
+        max-width: 80%;
+        /* Reduce image size further */
     }
 }
 
-/* Small Screens - Phones */
 @media (max-width: 480px) {
-    .about-content .btn {
-        padding: 8px 16px;
-        font-size: 12px;
-        width: auto;  /* Button will adjust to content */
+    .about-content h2 {
+        font-size: 24px;
+        /* Smaller font size for very small screens */
+    }
+
+    .about-content p {
+        font-size: 14px;
+        /* Further reduce paragraph font size */
+    }
+
+    .about-image {
+        max-width: 100%;
+        /* Full width image */
+    }
+
+    .about-us {
+        padding: 10px;
+        /* Reduce padding for smaller screens */
     }
 }
-
-/* Extra Small Screens */
-@media (max-width: 360px) {
-    .about-content .btn {
-        padding: 6px 12px;
-        font-size: 10px;
-    }
-}
-
 
 
 
@@ -314,12 +658,13 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 4.5rem;
 }
 
 .card {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 0; /* Square borders */
+    border-radius: 0;
+    /* Square borders */
     overflow: hidden;
     transition: transform 0.3s ease;
     background-color: #fff;
@@ -329,7 +674,7 @@ header {
     width: 100%;
     height: 500px;
     object-fit: cover;
-    
+
 }
 
 .card h3 {
@@ -364,7 +709,8 @@ form label {
     color: #1a1a1a;
 }
 
-form input, form textarea {
+form input,
+form textarea {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #ccc;
@@ -373,23 +719,13 @@ form input, form textarea {
     color: #333;
 }
 
-form input:focus, form textarea:focus {
+form input:focus,
+form textarea:focus {
     border-color: #ff6f61;
     outline: none;
     box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
 }
 
-footer {
-    background-color: #1a1a1a;
-    color: #fff;
-    padding: 2rem 0;
-    text-align: center;
-    margin-top: 2rem;
-}
-
-footer p {
-    font-size: 1rem;
-}
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -402,30 +738,219 @@ footer p {
 .card:hover img {
     transform: scale(1.05);
 }
+
 /* Style for the card links */
 .collection-section .grid .card {
     display: inline-block;
-    text-decoration: none; /* Remove underline from the link */
-    color: black; /* Ensure text is black */
-    transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+    text-decoration: none;
+    /* Remove underline from the link */
+    color: black;
+    /* Ensure text is black */
+    transition: transform 0.3s ease-in-out;
+    /* Smooth transition for hover effect */
+    position: relative;
+    overflow: hidden;
+    /* Hide the underline initially */
 }
+
+.collection-section .grid .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    /* Start with 0% width */
+    height: 3px;
+    /* Adjust thickness of the underline */
+    background-color: #b18e35;
+    /* Background color for the underline */
+    transition: width 0.5s ease;
+    /* Slow transition for the width change */
+}
+
+.collection-section .grid .card:hover::after {
+    width: 100%;
+    /* Expand to full width on hover */
+}
+
 
 /* Style for the card title */
 .collection-section .grid .card .card-title {
     text-align: center;
-    font-size: 16 px;
     font-weight: bold;
     margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    /* Hide the underline initially */
 }
+
+
+
+
 
 /* Hover effect for the card */
 .collection-section .grid .card:hover {
-    transform: scale(1.05); /* Slightly enlarge the card on hover */
+    transform: scale(1.05);
+    /* Slightly enlarge the card on hover */
 }
 
 /* Hover effect for card-title (change color on hover) */
 .collection-section .grid .card:hover .card-title {
-    color: #000000; /* Change text color to blue on hover */
+    color: #000000;
+    /* Change text color to blue on hover */
 }
 
-    
+/* Footer Styles */
+footer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #333;
+    /* Optional background color */
+}
+
+.footer-container {
+    position: relative;
+    width: 100%;
+    height: 1000px;
+    /* Adjust based on your image size */
+}
+
+.footer-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures the image covers the entire area */
+    display: block;
+    z-index: 1;
+}
+
+/* Footer Content Section - Flexbox Layout */
+.footer-content {
+    position: absolute;
+    bottom: 50px;
+    /* Moves the content above the footer-overlay */
+    width: 100%;
+    color: #fff;
+    z-index: 2;
+    padding: 0 20px;
+    font-family: 'Lora', serif;
+    display: flex;
+    align-items: flex-start;
+    gap: 200px;
+    /* Adjusts space between items */
+    flex-wrap: wrap;
+    /* Allows the content to wrap to a new line */
+    margin-left: 400px;
+}
+
+/* Footer Logo */
+.footer-logo h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    /* Text shadow for better visibility */
+}
+
+/* Footer Links */
+.footer-links {
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #f4d03f;
+    /* Highlight effect on hover */
+}
+
+/* Social Media Links */
+.footer-social {
+    margin-bottom: 20px;
+}
+
+.footer-social a {
+    margin: 0 10px;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: #f4d03f;
+}
+
+/* Footer Overlay Section */
+.footer-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent black background */
+    color: #fff;
+    padding: 10px 0;
+    font-size: 14px;
+    text-align: center;
+    z-index: 2;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        /* Stack items vertically on smaller screens */
+        text-align: center;
+        bottom: 80px;
+    }
+
+    .footer-links a,
+    .footer-social a {
+        font-size: 12px;
+    }
+
+    .footer-logo h1 {
+        font-size: 20px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        /* Stack the links vertically */
+        align-items: center;
+    }
+
+    .footer-social {
+        display: flex;
+        flex-direction: column;
+        /* Stack the social media links vertically */
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        gap: 10px;
+        /* Reduce space between footer sections */
+    }
+
+    .footer-logo h1 {
+        font-size: 18px;
+    }
+
+    .footer-links a,
+    .footer-social a {
+        font-size: 10px;
+    }
+}

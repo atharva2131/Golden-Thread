@@ -4,389 +4,669 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Checkout Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        /* General Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Lora', serif;
         }
 
+        /* Body */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            font-family: 'Lora', serif;
+            background-color: #ffffff;
             color: #333;
-            line-height: 1.6;
-            padding: 0;
         }
 
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            background-color: #fff;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        a,
+        span,
+        li {
+            font-family: 'Lora', serif;
         }
 
-        h1 {
-            font-size: 36px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-            grid-column: span 2;
+
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Darker background */
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+            /* Darker shadow */
+            backdrop-filter: blur(20px);
+            transition: background 0.5s ease, box-shadow 0.3s ease;
+            opacity: 1;
+            /* Full opacity for header */
         }
 
-        /* Cart Items */
-        #cart-items {
-            margin-bottom: 30px;
-        }
-
-        .cart-item {
+        .navbar {
+            background: #ffffff;
+            /* Light background */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* Subtle border for contrast */
+            padding: 1.2rem 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.4s ease, box-shadow 0.3s ease;
+            opacity: 0.95;
+            /* Slight transparency */
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Subtle black shadow */
+        }
+
+
+
+        /* Scrolled state with darker background */
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            /* Slightly darker when scrolled */
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.5);
+            opacity: 1;
+        }
+
+        /* Container for layout and spacing */
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Logo with brighter color for contrast */
+        .logo {
+            font-size: 1.7rem;
+            /* Font size of the logo */
+            font-weight: 700;
+            margin-left: 190px;
+            text-transform: uppercase;
+            color: #000000;
+            /* White color for logo */
+            position: relative;
+            letter-spacing: 1.2px;
+            text-decoration: none;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            /* Space between navigation items */
+            opacity: 0.85;
+        }
+
+        /* Clean Links with subtle hover effect */
+        .nav-links a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            /* Font size for links */
+            font-weight: 500;
+            color: #000000;
+            /* White text color */
+            padding: 5px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        /* Subtle glow and scaling effect on hover */
+        .nav-links a:hover {
+            color: #FFD700;
+            /* Vibrant gold color */
+            transform: scale(1.05);
+        }
+
+
+        .nav-links .dropdown {
+            position: relative;
+        }
+
+        /* Dropdown menu container */
+        .nav-links .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            /* Positions the menu below the link */
+            left: 0;
+            background-color: #ffffff;
+            /* Pure white background */
+            list-style: none;
+            padding: 0;
+            /* Remove extra padding around items */
+            margin: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow */
+            z-index: 1000;
+            min-width: 200px;
+            /* Ensure consistent width for dropdown */
+            border-radius: 4px;
+            /* Smooth border corners */
+        }
+
+        /* Individual menu items */
+        .nav-links .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            /* Ensure items span the full width of the dropdown */
+        }
+
+        /* Links inside the dropdown menu */
+        .nav-links .dropdown-menu a {
+            display: block;
+            width: 100%;
+            /* Ensure the link takes the full width of the menu */
+            padding: 0.8rem 1rem;
+            /* Adjust padding for consistent spacing */
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #000000;
+            /* Black text for dropdown items */
+            transition: all 0.3s ease;
+            background-color: transparent;
+            /* Default transparent background */
+            text-align: left;
+            /* Align text to the left */
+            box-sizing: border-box;
+            /* Include padding in width calculations */
+        }
+
+        /* Hover effect for dropdown menu items */
+        .nav-links .dropdown-menu a:hover {
+            background-color: #000000;
+            /* Vibrant gold highlight */
+            color: #ffffff;
+            /* White text for contrast */
+        }
+
+        /* Show dropdown menu on hover */
+        .nav-links .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Adjust dropdown alignment for responsive view */
+        .nav-links .dropdown-menu {
+            left: auto;
+            /* Reset alignment */
+            right: 0;
+            /* Align to the right */
+        }
+
+
+
+
+
+
+        /* For smaller screens (Mobile) */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.6rem 15px;
+                /* Adjust padding for small screens */
+            }
+
+            .logo {
+                font-size: 1.6rem;
+                /* Slightly smaller logo size */
+            }
+
+            .nav-links {
+                gap: 1rem;
+                /* Reduced gap for smaller screens */
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                /* Slightly smaller font size for links */
+            }
+        }
+
+
+        /* Wrapper for the cart link */
+        /* Wrapper for the cart link */
+        a {
+            position: relative;
+            /* Ensure both the icon and count stay in the same flow */
+            display: inline-flex;
+            /* Aligns both icon and count horizontally */
+            align-items: center;
+            /* Vertically centers the icon and count */
+            color: #fff;
+            text-decoration: none;
+            margin-right: 100px;
+            /* Adjust space to the right of the cart */
+        }
+
+        /* Cart icon styling */
+        a i.fas.fa-shopping-cart {
+            font-size: 24px;
+            /* Adjust the icon size */
+        }
+
+        /* Cart count styling */
+        .cart-count {
+            background-color: transparent;
+            /* Makes the background transparent */
+            padding: 5px 10px;
+            /* Adjust padding for better visibility */
+            /* Optional: Add a border to make the count visible */
+            /* Keep the circular shape */
+            font-size: 16px;
+            /* Font size of the count */
+            font-weight: bold;
+            color: #000000;
+            /* Change the text color to match the border */
+            /* Space between the cart icon and count */
+        }
+
+
+
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+                /* Reduced padding on mobile */
+            }
+
+            .navbar .logo {
+                font-size: 24px;
+                /* Smaller logo font size on mobile */
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                /* Reduced gap between links on mobile */
+                align-items: center;
+            }
+
+            .nav-links a {
+                font-size: 20px;
+                /* Increased link size for touch-friendly targets */
+            }
+
+            .cart-count {
+                top: -5px;
+                right: -5px;
+            }
+        }
+
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             padding: 20px;
-            margin-bottom: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .cart-item img {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .cart-item-info {
+        .billing-details,
+        .order-summary {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
             flex: 1;
-            margin-left: 20px;
         }
 
-        .cart-item-info h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
+        .billing-details {
+            min-width: 300px;
+            max-width: 700px;
+        }
+
+        .order-summary {
+            min-width: 300px;
+            max-width: 700px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
             margin-bottom: 5px;
-        }
-
-        .cart-item-info p {
-            color: #777;
-            font-size: 14px;
-        }
-
-        .cart-item-remove {
-            color: #e74c3c;
-            cursor: pointer;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-
-        .cart-item-remove:hover {
-            color: #c0392b;
-        }
-
-        /* Payment Methods Section */
-        .payment-section {
-            margin-top: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .payment-option {
-            background: #fff;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .payment-option label {
-            font-weight: 600;
-            color: #333;
-            font-size: 18px;
-            margin-bottom: 15px;
+            font-weight: bold;
         }
 
         input,
-        button {
+        select,
+        textarea {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 0px;
+        }
+
+        .order-summary table {
             width: 100%;
-            padding: 14px;
-            font-size: 16px;
-            border-radius: 8px;
-            margin: 10px 0;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .order-summary table,
+        .order-summary th,
+        .order-summary td {
             border: 1px solid #ddd;
-            outline: none;
-            background-color: #f8f8f8;
-            box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.1), inset -4px -4px 10px rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
         }
 
-        input:focus,
-        button:focus {
-            border-color: #ff6347;
-            box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.1), inset -4px -4px 10px rgba(255, 255, 255, 0.1), 0 0 10px rgba(255, 99, 71, 0.3);
+        .order-summary th,
+        .order-summary td {
+            padding: 10px;
+            text-align: left;
         }
 
-        .payment-option button {
-            background-color: #000; /* Solid black button background */
-            color: #fff; /* White text */
-            font-weight: 700;
-            border: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+        .order-summary th {
+            background-color: #f2f2f2;
         }
-        
-        .payment-option button:hover {
-            background-color: #222; /* Darker shade of black on hover */
-            transform: translateY(-2px);
-        }
-        
-        .payment-option button:active {
-            background-color: #333; /* Solid black background when active */
-            transform: translateY(2px);
-        }
-        
 
-        .checkout-button {
-            background: #000000; /* Set the background to black */
-            color: white;
-            padding: 14px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 6px;
+        .order-summary .total {
+            font-weight: bold;
+        }
+
+        .order-summary button {
             width: 100%;
-            transition: all 0.3s ease;
-        }
-        
-        .checkout-button:hover {
-            background: #333333; /* Darker shade of black for hover effect */
-            transform: translateY(-3px);
-        }
-        
-        .checkout-button:active {
-            transform: translateY(1px);
-        }
-        
-
-        .order-summary {
-            margin-top: 40px;
-        }
-
-        .order-summary-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 20px;
-            margin-bottom: 10px;
-            background: #f8f8f8;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .order-summary-item h3 {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
-        .order-summary-item p {
-            color: #555;
+            padding: 15px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            margin-top: 15px;
             font-size: 16px;
+            cursor: pointer;
         }
 
-        .shipping-info input {
-            margin-bottom: 10px;
+        .order-summary button:hover {
+            background-color: #333;
         }
 
-        .promotional-code input {
-            margin-bottom: 10px;
-        }
-
-        /* Responsive Layout */
         @media (max-width: 768px) {
             .container {
-                grid-template-columns: 1fr;
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 28px;
-            }
-
-            .cart-item {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
             }
 
-            .cart-item img {
-                margin-bottom: 10px;
+            .billing-details,
+            .order-summary {
+                width: 90%;
+                /* Make sections take up 90% of the width on small screens */
+                min-width: 300px;
+                /* Set minimum width for readability */
+                margin-bottom: 20px;
+            }
+
+            .order-summary table,
+            .order-summary th,
+            .order-summary td {
+                padding: 8px;
+                /* Reduce padding on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 20px;
+                /* Make headings smaller on very small screens */
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                /* Make form elements take up 100% of the width */
+            }
+
+            .order-summary button {
+                font-size: 14px;
+                /* Make the button text smaller */
             }
         }
     </style>
 </head>
 
 <body>
+    <header>
+        <nav class="navbar">
+            <!-- <div class="container"> -->
+            <a href="home.html" class="logo">Golden Thread</a>
+            <ul class="nav-links">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-link">Men</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sherwanis.html">Sherwanis</a></li>
+                        <li><a href="kurta-sets.html">Kurta Sets</a></li>
+                        <li><a href="blazer-sets.html">Blazers</a></li>
+                        <li><a href="jacket-sets.html">Jacket Sets</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-link">Women</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bridal.html">Bridal Wear</a></li>
+                        <li><a href="sarees.html">Sarees</a></li>
+                        <li><a href="lehenga-sets.html">Lehenga Sets</a></li>
+                        <li><a href="co-ord-sets.html">Co-ord Sets</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="view_cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="cart-count">0</span> <!-- Cart count here -->
+                    </a>
+                </li>
+            </ul>
+            <!-- </div> -->
+        </nav>
+    </header>
     <div class="container">
-        <h1>Checkout</h1>
+        <div class="billing-details">
+            <h2>Billing Details</h2>
+            <form id="billing-form">
+                <label for="shipping-name">Full Name <span style="color: red;">*</span></label>
+                <input type="text" id="shipping-name" required>
 
-        <!-- Cart Items -->
-        <div id="cart-items">
-            <!-- Cart items will be dynamically added here -->
-        </div>
-        
-        <!-- Order Summary Section -->
-        <section>
-            <div class="order-summary">
-                <h3>Order Summary</h3>
-                <div id="order-summary-items"></div>
-                <div class="order-summary-item">
-                    <h3>Shipping</h3>
-                    <p>₹100.00</p>
-                </div>
-                <div class="order-summary-item">
-                    <h3>Estimated Delivery</h3>
-                    <p>2-5 Business Days</p>
-                </div>
-            </div>
-            <div id="cart-total" class="total">Total: ₹0</div>
-        </section>
+                <label for="shipping-address">Street Address <span style="color: red;">*</span></label>
+                <input type="text" id="shipping-address" required>
 
-        <!-- Shipping Information Section -->
-        <div>
-            <div class="shipping-info" style="margin-bottom: 20px;">
-                <h3>Shipping Information</h3>
-                <input type="text" placeholder="Full Name" id="shipping-name" required><br>
-                <input type="text" placeholder="Street Address" id="shipping-address" required><br>
-                <input type="text" placeholder="City" id="shipping-city" required><br>
-                <input type="text" placeholder="Zip Code" id="shipping-zip" required><br>
-                <input type="text" placeholder="Country" id="shipping-country" required><br>
-            </div>
+                <label for="shipping-city">City <span style="color: red;">*</span></label>
+                <input type="text" id="shipping-city" required>
 
-            <!-- Checkout Button -->
-            <div style="margin-top: 30px;">
-                <a href="thankyou.html" id="checkout-button" class="checkout-button">Proceed to Checkout</a>
-            </div>
+                <label for="shipping-zip">ZIP Code <span style="color: red;">*</span></label>
+                <input type="text" id="shipping-zip" required>
+
+                <label for="shipping-country">Country <span style="color: red;">*</span></label>
+                <input type="text" id="shipping-country" required>
+
+                <label for="shipping-phone">Phone <span style="color: red;">*</span></label>
+                <input type="text" id="shipping-phone" required>
+
+                <label for="shipping-email">Email <span style="color: red;">*</span></label>
+                <input type="email" id="shipping-email" required>
+
+                <h2>Additional Information</h2>
+                <label for="order-notes">Order notes (optional)</label>
+                <textarea id="order-notes"
+                    placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+            </form>
         </div>
 
-        <!-- Payment Section -->
-        <div class="payment-section">
-            <div class="payment-option">
-                <label for="credit-card">Credit Card Payment</label>
-                <form id="credit-card-form">
-                    <input type="text" id="cc-name" placeholder="Cardholder Name" required><br>
-                    <input type="text" id="cc-number" placeholder="Card Number" required><br>
-                    <input type="text" id="cc-expiry" placeholder="MM/YY" required><br>
-                    <input type="text" id="cc-cvc" placeholder="CVC" required><br>
-                    <button type="button" id="credit-card-button">Pay with Credit Card</button>
-                </form>
-            </div>
+        <div class="order-summary">
+            <h2>Your Order</h2>
+            <table id="order-summary-table">
+                <tr>
+                    <th>Product</th>
+                    <th>Subtotal</th>
+                </tr>
+                <!-- Cart items will be dynamically added here -->
+            </table>
+            <!-- <div class="notice" id="notice">
+                <input type="checkbox" id="no-payment-methods" onclick="removeNotice()">
+                <label for="no-payment-methods">Sorry, it seems that there are no available payment methods. Please contact us if you require assistance or wish to make alternate arrangements.</label>
+            </div> -->
+            <div class="total" id="total-price">Total: ₹0.00</div>
+            <button type="button" id="place-order-button">Place Order</button>
         </div>
     </div>
 
     <script>
-        function loadCartItems() {
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartTotalElement = document.getElementById('cart-total');
-            const orderSummaryContainer = document.getElementById('order-summary-items');
-
-            const shippingCost = 100; // Fixed shipping cost
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            let totalPrice = 0;
-
-            cartItemsContainer.innerHTML = '';
-            orderSummaryContainer.innerHTML = '';
-
-            cart.forEach(item => {
-                const quantity = item.quantity || 1;
-                const pricePerItem = parseFloat(item.price.replace(/[^\d.-]/g, '')) || 0;
-                const itemTotalPrice = pricePerItem * quantity;
-
-                // Cart item display
-                const cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-                cartItem.innerHTML = `
-                    <img src="${item.image || 'default-image.jpg'}" alt="Item Image">
-                    <div class="cart-item-info">
-                        <h3>${item.name}</h3>
-                        <p>Price: ₹${pricePerItem.toFixed(2)}</p>
-                        <p>Quantity: ${quantity}</p>
-                    </div>
-                `;
-                cartItemsContainer.appendChild(cartItem);
-
-                // Order summary display
-                const summaryItem = document.createElement('div');
-                summaryItem.classList.add('order-summary-item');
-                summaryItem.innerHTML = `
-                    <h3>${item.name}</h3>
-                    <p>₹${itemTotalPrice.toFixed(2)}</p>
-                `;
-                orderSummaryContainer.appendChild(summaryItem);
-
-                totalPrice += itemTotalPrice;
-            });
-
-            // Add shipping cost
-            totalPrice += shippingCost;
-
-            // Update total price in the UI
-            cartTotalElement.innerHTML = `Total: ₹${totalPrice.toFixed(2)}`;
-        }
-
-        // Validate shipping info
-        function validateShippingInfo() {
-            const name = document.getElementById('shipping-name').value.trim();
-            const address = document.getElementById('shipping-address').value.trim();
-            const city = document.getElementById('shipping-city').value.trim();
-            const zip = document.getElementById('shipping-zip').value.trim();
-            const country = document.getElementById('shipping-country').value.trim();
-
-            if (!name || !address || !city || !zip.match(/^\d+$/) || !country) {
-                alert('Please fill out all shipping information correctly.');
-                return false;
-            }
-            return true;
-        }
-
-        // Validate credit card info
-        function validateCreditCardInfo() {
-            const ccName = document.getElementById('cc-name').value.trim();
-            const ccNumber = document.getElementById('cc-number').value.trim();
-            const ccExpiry = document.getElementById('cc-expiry').value.trim();
-            const ccCVC = document.getElementById('cc-cvc').value.trim();
-
-            if (!ccName || !ccNumber.match(/^\d{16}$/) || !ccExpiry.match(/^(0[1-9]|1[0-2])\/\d{2}$/) || !ccCVC.match(/^\d{3}$/)) {
-                alert('Please enter valid credit card details.');
-                return false;
-            }
-            return true;
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
-            loadCartItems();
+            // Function to load cart items and calculate total
+            function loadCartItems() {
+                const orderSummaryTable = document.getElementById('order-summary-table');
+                const totalPriceElement = document.getElementById('total-price');
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let totalPrice = 0;
 
-            document.getElementById('checkout-button').addEventListener('click', (event) => {
-                if (!validateShippingInfo()) {
-                    event.preventDefault();
-                }
-            });
+                // Debugging: Log cart data
+                console.log("Cart items:", cart);
 
-            document.getElementById('credit-card-button').addEventListener('click', () => {
-                if (validateShippingInfo() && validateCreditCardInfo()) {
-                    alert('Payment successful!');
+                // Clear previous items in the table
+                orderSummaryTable.innerHTML = `
+                    <tr>
+                        <th>Product</th>
+                        <th>Subtotal</th>
+                    </tr>
+                `;
+
+                // Loop through the cart and add items to the order summary
+                cart.forEach(item => {
+                    const quantity = item.quantity || 1;
+                    const pricePerItem = parseFloat(item.price.replace(/[^\d.-]/g, '')) || 0;
+                    const itemTotalPrice = pricePerItem * quantity;
+
+                    // Debugging: Log each item's details
+                    console.log(`Item: ${item.name}, Price: ${pricePerItem}, Quantity: ${quantity}, Subtotal: ₹${itemTotalPrice}`);
+
+                    // Add item to the order summary table
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.name} × ${quantity}</td>
+                        <td>₹${itemTotalPrice.toFixed(2)}</td>
+                    `;
+                    orderSummaryTable.appendChild(row);
+
+                    totalPrice += itemTotalPrice;
+                });
+
+                // Debugging: Log the total price
+                console.log("Total Price:", totalPrice);
+
+                // Update the total price element on the page
+                totalPriceElement.innerHTML = `Total: ₹${totalPrice.toFixed(2)}`;
+                return totalPrice;
+            }
+
+            // Load cart items and calculate total amount on page load
+            const totalAmount = loadCartItems();
+
+            console.log("Total Amount after loading cart items:", totalAmount);
+
+            // Event listener for placing the order
+            document.getElementById('place-order-button').addEventListener('click', async () => {
+                const form = document.getElementById('billing-form');
+                if (form.checkValidity()) {
+                    // Gather customer details and cart data
+                    const customer = {
+                        name: document.getElementById('shipping-name').value,
+                        email: document.getElementById('shipping-email').value,
+                        phone: document.getElementById('shipping-phone').value,
+                        address: document.getElementById('shipping-address').value,
+                    };
+
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                    // Prepare order data to send to the backend
+                    const orderData = {
+                        products: cart.map(item => ({
+                            name: item.name,
+                            price: parseFloat(item.price.replace(/[^\d.-]/g, '')),
+                            quantity: item.quantity || 1,
+                            totalPrice: parseFloat(item.price.replace(/[^\d.-]/g, '')) * (item.quantity || 1),
+                        })),
+                        totalAmount: totalAmount.toFixed(2), // Ensure totalAmount is a formatted string
+                        customer,
+                    };
+
+                    console.log("Order Data to send:", orderData); // Debugging: Check the order data before sending to backend
+
+                    try {
+                        const response = await fetch('http://localhost:5000/api/orders', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(orderData),
+                        });
+
+                        const data = await response.json();
+                        if (response.ok) {
+                            alert('Order placed successfully!');
+
+                            // Save the order data to localStorage
+                            const orderDataToSave = {
+                                orderNumber: data.orderNumber || 'N/A', // Save the order number
+                                totalAmount: totalAmount.toFixed(2), // Ensure totalAmount is saved as a formatted string
+                            };
+
+                            localStorage.setItem('orderData', JSON.stringify(orderDataToSave)); // Save order data
+                            localStorage.removeItem('cart'); // Clear the cart after placing the order
+
+                            // Redirect to the thank-you page
+                            window.location.href = '/thank-you.html';
+                        } else {
+                            alert(data.message || 'Failed to place order.');
+                        }
+                    } catch (error) {
+                        console.error('Error placing order:', error);
+                        alert('Failed to place order.');
+                    }
+                } else {
+                    alert('Please fill out all required fields.');
                 }
             });
         });
+        // Function to update Cart Count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+
+            if (cartCountElement) {
+                cartCountElement.textContent = cart.length;
+            }
+        }
+
+        // Update cart count on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCount(); // Updates the cart count
+        });
+
+
+
+
     </script>
+
+
+
 </body>
 
 </html>

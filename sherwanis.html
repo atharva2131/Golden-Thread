@@ -6,12 +6,308 @@
     <title>Sherwanis</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f5ec;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
         }
+        
+        /* Body */
+        body {
+            font-family: 'Lora', serif;
+            background-color:  #ffffff;
+            color: #333;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        a,
+        span,
+        li {
+            font-family: 'Lora', serif;
+        }
+
+
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Darker background */
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+            /* Darker shadow */
+            backdrop-filter: blur(20px);
+            transition: background 0.5s ease, box-shadow 0.3s ease;
+            opacity: 1;
+            /* Full opacity for header */
+        }
+
+        .navbar {
+            background: #ffffff;
+            /* Light background */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* Subtle border for contrast */
+            padding: 1.2rem 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.4s ease, box-shadow 0.3s ease;
+            opacity: 0.95;
+            /* Slight transparency */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Subtle black shadow */
+        }
+
+
+
+        /* Scrolled state with darker background */
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            /* Slightly darker when scrolled */
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.5);
+            opacity: 1;
+        }
+
+        /* Container for layout and spacing */
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Logo with brighter color for contrast */
+        .logo {
+            font-size: 1.7rem;
+            /* Font size of the logo */
+            font-weight: 700;
+            margin-left: 190px;
+            text-transform: uppercase;
+            color: #000000;
+            /* White color for logo */
+            position: relative;
+            letter-spacing: 1.2px;
+            text-decoration: none;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.2rem;
+            /* Space between navigation items */
+            opacity: 0.85;
+        }
+
+        /* Clean Links with subtle hover effect */
+        .nav-links a {
+            text-decoration: none;
+            font-size: 1.1rem;
+            /* Font size for links */
+            font-weight: 500;
+            color: #000000;
+            /* White text color */
+            padding: 5px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        /* Subtle glow and scaling effect on hover */
+        .nav-links a:hover {
+            color: #FFD700;
+            /* Vibrant gold color */
+            transform: scale(1.05);
+        }
+
+
+        .nav-links .dropdown {
+            position: relative;
+        }
+
+        /* Dropdown menu container */
+        .nav-links .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            /* Positions the menu below the link */
+            left: 0;
+            background-color: #ffffff;
+            /* Pure white background */
+            list-style: none;
+            padding: 0;
+            /* Remove extra padding around items */
+            margin: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow */
+            z-index: 1000;
+            min-width: 200px;
+            /* Ensure consistent width for dropdown */
+            border-radius: 4px;
+            /* Smooth border corners */
+        }
+
+        /* Individual menu items */
+        .nav-links .dropdown-menu li {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            /* Ensure items span the full width of the dropdown */
+        }
+
+        /* Links inside the dropdown menu */
+        .nav-links .dropdown-menu a {
+            display: block;
+            width: 100%;
+            /* Ensure the link takes the full width of the menu */
+            padding: 0.8rem 1rem;
+            /* Adjust padding for consistent spacing */
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #000000;
+            /* Black text for dropdown items */
+            transition: all 0.3s ease;
+            background-color: transparent;
+            /* Default transparent background */
+            text-align: left;
+            /* Align text to the left */
+            box-sizing: border-box;
+            /* Include padding in width calculations */
+        }
+
+        /* Hover effect for dropdown menu items */
+        .nav-links .dropdown-menu a:hover {
+            background-color: #000000;
+            /* Vibrant gold highlight */
+            color: #ffffff;
+            /* White text for contrast */
+        }
+
+        /* Show dropdown menu on hover */
+        .nav-links .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Adjust dropdown alignment for responsive view */
+        .nav-links .dropdown-menu {
+            left: auto;
+            /* Reset alignment */
+            right: 0;
+            /* Align to the right */
+        }
+
+
+
+
+
+
+        /* For smaller screens (Mobile) */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.6rem 15px;
+                /* Adjust padding for small screens */
+            }
+
+            .logo {
+                font-size: 1.6rem;
+                /* Slightly smaller logo size */
+            }
+
+            .nav-links {
+                gap: 1rem;
+                /* Reduced gap for smaller screens */
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                /* Slightly smaller font size for links */
+            }
+        }
+
+
+        /* Wrapper for the cart link */
+        /* Wrapper for the cart link */
+        a {
+            position: relative;
+            /* Ensure both the icon and count stay in the same flow */
+            display: inline-flex;
+            /* Aligns both icon and count horizontally */
+            align-items: center;
+            /* Vertically centers the icon and count */
+            color: #fff;
+            text-decoration: none;
+            margin-right: 100px;
+            /* Adjust space to the right of the cart */
+        }
+
+        /* Cart icon styling */
+        a i.fas.fa-shopping-cart {
+            font-size: 24px;
+            /* Adjust the icon size */
+        }
+
+        /* Cart count styling */
+        .cart-count {
+            background-color: transparent;
+            /* Makes the background transparent */
+            padding: 5px 10px;
+            /* Adjust padding for better visibility */
+            /* Optional: Add a border to make the count visible */
+            /* Keep the circular shape */
+            font-size: 16px;
+            /* Font size of the count */
+            font-weight: bold;
+            color: #000000;
+            /* Change the text color to match the border */
+            /* Space between the cart icon and count */
+        }
+
+
+
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+                /* Reduced padding on mobile */
+            }
+
+            .navbar .logo {
+                font-size: 24px;
+                /* Smaller logo font size on mobile */
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                /* Reduced gap between links on mobile */
+                align-items: center;
+            }
+
+            .nav-links a {
+                font-size: 20px;
+                /* Increased link size for touch-friendly targets */
+            }
+
+            .cart-count {
+                top: -5px;
+                right: -5px;
+            }
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -87,6 +383,40 @@
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <!-- <div class="container"> -->
+            <a href="home.html" class="logo">Golden Thread</a>
+            <ul class="nav-links">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-link">Men</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sherwanis.html">Sherwanis</a></li>
+                        <li><a href="kurta-sets.html">Kurta Sets</a></li>
+                        <li><a href="blazer-sets.html">Blazers</a></li>
+                        <li><a href="jacket-sets.html">Jacket Sets</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-link">Women</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bridal.html">Bridal Wear</a></li>
+                        <li><a href="sarees.html">Sarees</a></li>
+                        <li><a href="lehenga-sets.html">Lehenga Sets</a></li>
+                        <li><a href="co-ord-sets.html">Co-ord Sets</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="view_cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="cart-count">0</span> <!-- Cart count here -->
+                    </a>
+                </li>
+            </ul>
+            <!-- </div> -->
+        </nav>
+    </header>           
     <div class="container">
         <div class="header">Sherwanis</div>
         <div class="product-grid">

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Order</title>
+    <!-- Optional: Link to your styles.css if needed -->
+</head>
+<body>
+    <div class="thank-you-page">
+        <h1>Thank You for Your Order!</h1>
+        <p>Your order has been successfully placed. We will process it shortly.</p>
+
+        <div class="order-summary">
+            <h2>Order Details</h2>
+            <p><strong>Order Number:</strong> <span id="order-number"></span></p>
+            <p><strong>Total Amount:</strong> ₹<span id="order-total"></span></p>
+        </div>
+
+        <div class="next-actions">
+            <button id="view-order-button" onclick="viewOrder()">View Order</button>
+            <button id="continue-shopping-button" onclick="continueShopping()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve order data from localStorage
+            const orderData = JSON.parse(localStorage.getItem('orderData')) || {};
+            console.log("Order Data from localStorage:", orderData); // Debug log
+        
+            // Display the order number
+            document.getElementById('order-number').innerText = orderData.orderNumber || 'N/A';
+        
+            // Parse and display the total amount
+            let totalAmount = parseFloat(orderData.totalAmount);
+            if (isNaN(totalAmount)) {
+                console.error("Invalid totalAmount in orderData:", orderData.totalAmount); // Debug log
+                totalAmount = 0;
+            }
+        
+            // Display the formatted total amount
+            document.getElementById('order-total').innerText = totalAmount.toFixed(2);
+            console.log("Displayed Total Amount:", totalAmount); // Debug log
+        
+            // Define the action for "View Order" button
+            document.getElementById('view-order-button').addEventListener('click', viewOrder);
+        
+            // Define the action for "Continue Shopping" button
+            document.getElementById('continue-shopping-button').addEventListener('click', continueShopping);
+        
+            // View Order function
+            function viewOrder() {
+                // Redirect to a detailed order page (adjust the URL to your actual view order page)
+                window.location.href = '/order-details.html';
+            }
+        
+            // Continue Shopping function
+            function continueShopping() {
+                // Redirect back to the main shopping page
+                window.location.href = '/home.html';
+            }
+        });
+        
+        
+        
+    </script>
+
+    <style>
+        /* Optional: Style the page */
+        body {
+            font-family: 'Lora', serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .thank-you-page {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #9381ff;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+        }
+
+        .next-actions {
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #9381ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #7a66d1;
+        }
+    </style>
+</body>
+</html>

@@ -1,374 +1,317 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Golden Thread Admin Panel</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/admin.css  ">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="header">
-        <h1>Golden Thread Admin Panel</h1>
+  <div class="admin-panel">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Golden Thread</h2>
+        <button class="toggle-btn"><i class="fas fa-bars"></i></button>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" class="nav-link" data-target="dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+          <li><a href="#" class="nav-link" data-target="products"><i class="fas fa-box"></i> Products</a></li>
+          <li><a href="#" class="nav-link" data-target="orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+          <li><a href="#" class="nav-link" data-target="users"><i class="fas fa-users"></i> Users</a></li>
+          <!-- <li><a href="#" class="nav-link" data-target="analytics"><i class="fas fa-chart-bar"></i> Analytics</a></li> -->
+          <li><a href="#" class="nav-link" data-target="settings"><i class="fas fa-cog"></i> Settings</a></li>
+          <li><a href="#" class="nav-link" data-target="logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="top-navbar">
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." />
+          <button><i class="fas fa-search"></i></button>
+        </div>
         <div class="profile-menu">
-            <img alt="Admin profile picture" height="50" onclick="toggleProfileDropdown()"
-                src="https://storage.googleapis.com/a1aa/image/NDFWvsWvpfRmekFeYw7F9bdjVIWZHJUGNcRk6MwnJtuzcqEoA.jpg"
-                width="50" />
-            Admin
-            <div class="profile-dropdown" id="profileDropdown">
-                <a href="javascript:void(0)" onclick="showSection('profile')">
-                    Profile
-                </a>
-                <a href="javascript:void(0)" onclick="logout()">
-                    Logout
-                </a>
+          <img src="admin.jpg" alt="Admin Profile" class="profile-pic">
+          <span class="admin-name">Admin</span>
+        </div>
+      </header>
+
+      <!-- Section Content -->
+      <section id="dashboard" class="content-section">
+        <h1>Dashboard</h1>
+        <p>Welcome to the admin dashboard! Here you can manage and monitor the website.</p>
+    
+        <!-- Dashboard Overview Section -->
+        <div class="dashboard-overview">
+            <div class="stat-card">
+                <h2>Total Products</h2>
+                <p id="total-products">Loading...</p>
+            </div>
+            <div class="stat-card">
+                <h2>Total Orders</h2>
+                <p id="total-orders">Loading...</p>
+            </div>
+            <div class="stat-card">
+                <h2>Total Users</h2>
+                <p id="total-users">Loading...</p>
             </div>
         </div>
-    </div>
-    </div>
-    <div class="container">
-        <div class="sidebar">
-            <a href="javascript:void(0)" onclick="showDashboardSection('overview')">Dashboard</a>
-
-
-            <a href="javascript:void(0)" onclick="toggleDropdown('mens-dropdown')">Men's Section</a>
-            <div id="mens-dropdown" class="dropdown">
-                <a href="javascript:void(0)" onclick="showSection('mens-sherwani')">Sherwani</a>
-                <a href="javascript:void(0)" onclick="showSection('mens-kurta')">Kurta Sets</a>
-                <a href="javascript:void(0)" onclick="showSection('mens-indo-western')">Blazer Sets</a>
-                <button class="add-category-btn" onclick="addCategory('mens')">Add New Category</button>
-            </div>
-            <a href="javascript:void(0)" onclick="toggleDropdown('womens-dropdown')">Women's Section</a>
-            <div id="womens-dropdown" class="dropdown">
-                <a href="javascript:void(0)" onclick="showSection('womens-bridal')">Bridal Wear</a>
-                <a href="javascript:void(0)" onclick="showSection('womens-saree')">Sarees</a>
-                <a href="javascript:void(0)" onclick="showSection('womens-lehenga')">Lehengas</a>
-                <button class="add-category-btn" onclick="addCategory('womens')">Add New Category</button>
-            </div>
-            <a href="javascript:void(0)" onclick="showSection('orders')">Orders</a>
-            <a href="javascript:void(0)" onclick="showSection('users')">Users Management</a>
-            <a href="javascript:void(0)" onclick="showSection('reports')">Reports</a>
-            <a href="javascript:void(0)" onclick="showSection('settings')">Settings</a>
+    
+        <!-- Recent Activity Section -->
+        <div class="recent-activity">
+            <h3>Recent Activity</h3>
+            <ul id="activity-list">
+                <!-- Recent activity items will be populated here -->
+            </ul>
         </div>
-        <!-- Main Dashboard Content -->
+    </section>
+    
+      <section id="products" class="content-section hidden">
+        <h1>Products</h1>
+        <p>Welcome to the Products Section!</p>
 
-
-
-        <div class="content">
-            <section class="section" id="mens-sherwani" style="display: none;">
-                <h2>Men's Sherwani</h2>
-                <div class="product-list">
-                    <div class="product-item">
-                        <img alt="Photo of a premium wedding Sherwani for men" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/XxM3Olfe7VsSrUq8HFqmifRLcUTQT6vQaIMuum7Z3opE5iEoA.jpg"
-                            width="300" />
-                        <h3 class="product-name">Premium Sherwani</h3>
-                        <p class="price">$500</p>
-                        <p class="description">Elegant and traditional Sherwani perfect for weddings.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img alt="Photo of a designer Sherwani for men" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/2.jpg" width="300" />
-                        <h3 class="product-name">Designer Sherwani</h3>
-                        <p class="price">$600</p>
-                        <p class="description">Designer Sherwani with intricate embroidery and details.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="add-product-btn" onclick="addProduct('mens-sherwani')">Add New Sherwani</button>
-            </section>
-            <section class="section" id="mens-kurta" style="display: none;">
-                <h2>Men's Kurta Sets</h2>
-                <div class="product-list">
-                    <div class="product-item">
-                        <img alt="Photo of a stylish Kurta set for men" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/RJHEmz9acYIJPJ9UkqU4W6xgbWntIP8RSBlQ7QTEh7cKXkAF.jpg"
-                            width="300" />
-                        <h3 class="product-name">Stylish Kurta Set</h3>
-                        <p class="price">$150</p>
-                        <p class="description">Comfortable and stylish Kurta set for various occasions.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img alt="Photo of a traditional Kurta set for men" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/3.jpg" width="300" />
-                        <h3 class="product-name">Traditional Kurta Set</h3>
-                        <p class="price">$120</p>
-                        <p class="description">Traditional Kurta set with classic design and comfort.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                </div>
-                <button class="add-product-btn" onclick="addProduct('mens-kurta')">Add New Kurta Set</button>
-            </section>
-
-            <section class="section" id="mens-indo-western" style="display: none;">
-                <h2>Blazer Sets</h2>
-                <div class="product-list" id="product-list">
-                    <div class="product-grid"></div>
-
-                    <!-- Dynamic content will be injected here -->
-                </div>
-
-                <button class="add-product-btn" onclick="addProduct('mens-indo-western')">Add New Indo-Western</button>
-            </section>
-
-            <section class="section" id="womens-bridal" style="display: none;">
-                <h2>Women's Bridal Wear</h2>
-                <div class="product-list">
-                    <div class="product-item">
-                        <img alt="Photo of a luxurious bridal wear for women" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/fH2vPWQ2PYV9GCeJ7cIYeWWeb9KC7PUa7pAE8FNI1C6uyFJQB.jpg"
-                            width="300" />
-                        <h3 class="product-name">Luxurious Bridal Wear</h3>
-                        <p class="price">$1000</p>
-                        <p class="description">Exquisite bridal wear designed for the perfect wedding day.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img alt="Photo of a designer bridal wear for women" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/5.jpg" width="300" />
-                        <h3 class="product-name">Designer Bridal Wear</h3>
-                        <p class="price">$1200</p>
-                        <p class="description">Designer bridal wear with luxurious details and craftsmanship.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                </div>
-                <button class="add-product-btn" onclick="addProduct('womens-bridal')">Add New Bridal Wear</button>
-            </section>
-
-            <section class="section" id="womens-saree" style="display: none;">
-                <h2>Women's Sarees</h2>
-                <div class="product-list">
-                    <div class="product-item">
-                        <img alt="Photo of a traditional Saree for women" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/ocFQMU3C7b5aMluOtOKtQxOLsjf1FZeVijtOgvr24pTmcRCUA.jpg"
-                            width="300" />
-                        <h3 class="product-name">Traditional Saree</h3>
-                        <p class="price">$200</p>
-                        <p class="description">Beautifully crafted traditional Saree for special occasions.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img alt="Photo of a designer Saree for women" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/6.jpg" width="300" />
-                        <h3 class="product-name">Designer Saree</h3>
-                        <p class="price">$250</p>
-                        <p class="description">Designer Saree with intricate patterns and luxurious fabric.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                </div>
-                <button class="add-product-btn" onclick="addProduct('womens-saree')">Add New Saree</button>
-            </section>
-
-            <section class="section" id="womens-lehenga" style="display: none;">
-                <h2>Women's Lehengas</h2>
-                <div class="product-list">
-                    <div class="product-item">
-                        <img alt="Photo of a designer Lehenga for women" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/HnbeaNQggHweYkGff8eVdw4reIP3LgIEazfytRMs4SBnTuIBKA.jpg"
-                            width="300" />
-                        <h3 class="product-name">Designer Lehenga</h3>
-                        <p class="price">$800</p>
-                        <p class="description">Stunning designer Lehenga with intricate embroidery.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                    <div class="product-item">
-                        <img alt="Photo of a traditional Lehenga for women" height="400"
-                            src="https://storage.googleapis.com/a1aa/image/7.jpg" width="300" />
-                        <h3 class="product-name">Traditional Lehenga</h3>
-                        <p class="price">$700</p>
-                        <p class="description">Traditional Lehenga with classic design and rich fabric.</p>
-                        <div class="actions">
-                            <button onclick="editProduct(this)">Edit</button>
-                            <button onclick="deleteProduct(this)">Delete</button>
-                        </div>
-                    </div>
-                </div>
-                <button class="add-product-btn" onclick="addProduct('womens-lehenga')">Add New Lehenga</button>
-            </section>
-
-            <section class="section" id="orders" style="display: none;">
-                <h2>Orders</h2>
-                <p>Manage all customer orders here.</p>
-                <table class="order-table">
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Customer Name</th>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Total Price</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>001</td>
-                            <td>John Doe</td>
-                            <td>Premium Sherwani</td>
-                            <td>1</td>
-                            <td>$500</td>
-                            <td>Pending</td>
-                            <td class="order-actions">
-                                <button onclick="editOrder(this)">Edit</button>
-                                <!-- <button onclick="updateOrder(this)">Update</button> -->
-                                <button onclick="deleteOrder(this)">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>002</td>
-                            <td>Jane Smith</td>
-                            <td>Designer Lehenga</td>
-                            <td>1</td>
-                            <td>$800</td>
-                            <td>Shipped</td>
-                            <td class="order-actions">
-                                <button onclick="editOrder(this)">Edit</button>
-                                <!-- <button onclick="updateOrder(this)">Update</button> -->
-                                <button onclick="deleteOrder(this)">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- Add order management functionality here -->
-            </section>
-            <section class="section" id="users" style="display: none;">
-                <h2>Users Management</h2>
-                <p>Manage user information here.</p>
-                <div class="user-list">
-                    <div class="user-item">
-                        <h3>John Doe</h3>
-                        <p>Email: john.doe@example.com</p>
-                        <p>Password: ********</p>
-                        <div class="actions">
-                            <button onclick="editUser(this)">Edit</button>
-                            <!-- <button onclick="updateUser(this)">Update</button> -->
-                            <button onclick="deleteUser(this)">Delete</button>
-                        </div>
-                    </div>
-                    <div class="user-item">
-                        <h3>Jane Smith</h3>
-                        <p>Email: jane.smith@example.com</p>
-                        <p>Password: ********</p>
-                        <div class="actions">
-                            <button onclick="editUser(this)">Edit</button>
-                            <!-- <button onclick="updateUser(this)">Update</button> -->
-                            <button onclick="deleteUser(this)">Delete</button>
-                        </div>
-                    </div>
-                </div><!-- Add user management functionality here -->
-            </section>
-            <section class="section" id="reports" style="display: none;">
-                <h2>Reports</h2>
-                <p>View sales and performance reports here.</p>
-                <div class="report-section">
-                    <h3>Sales Report</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Total Sales</th>
-                                <th>Number of Orders</th>
-                                <th>Average Order Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2023-01-01</td>
-                                <td>$5000</td>
-                                <td>50</td>
-                                <td>$100</td>
-                            </tr>
-                            <tr>
-                                <td>2023-01-02</td>
-                                <td>$6000</td>
-                                <td>60</td>
-                                <td>$100</td>
-                            </tr>
-                            <!-- Add more rows as needed -->
-                        </tbody>
-                    </table>
-                </div>
-                <div class="report-section">
-                    <h3>Customer Report</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Customer Name</th>
-                                <th>Email</th>
-                                <th>Total Orders</th>
-                                <th>Total Spend</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>john@example.com</td>
-                                <td>5</td>
-                                <td>$500</td>
-                            </tr>
-                            <tr>
-                                <td>Jane Smith</td>
-                                <td>jane@example.com</td>
-                                <td>3</td>
-                                <td>$300</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- Add report generation functionality here -->
-            </section>
-            <!-- <button id="toggleSettingsBtn">Show Settings</button> -->
-
-            <section class="section" id="settings">
-                <h2>Settings</h2>
-                <p>Manage website settings here.</p>
-                <form id="settingsForm">
-                    <div class="form-group">
-                        <label for="siteTitle">Site Title:</label>
-                        <input type="text" id="siteTitle" name="siteTitle" placeholder="Enter site title">
-                    </div>
-                    <div class="form-group">
-                        <label for="siteDescription">Site Description:</label>
-                        <textarea id="siteDescription" name="siteDescription"
-                            placeholder="Enter site description"></textarea>
-                    </div>
-                    <button type="submit">Save Settings</button>
-                </form>
-            </section>
+        <!-- Women's Section -->
+        <div class="category" data-category="women">
+          <h2>Women</h2>
+          <div class="subcategories horizontal">
+            <button class="subcategory-btn" data-type="sarees">Sarees</button>
+            <button class="subcategory-btn" data-type="lehengas">Lehengas</button>
+            <button class="subcategory-btn" data-type="bridalwear">Bridal Wear</button>
+            <button class="subcategory-btn" data-type="coordset">Coord Sets</button>
+          </div>
         </div>
+
+        <!-- Men's Section -->
+        <div class="category" data-category="men">
+          <h2>Men</h2>
+          <div class="subcategories horizontal">
+            <button class="subcategory-btn" data-type="blazers">Blazer Sets</button>
+            <button class="subcategory-btn" data-type="sherwani">Sherwani</button>
+            <button class="subcategory-btn" data-type="kurtas">Kurta Sets</button>
+            <button class="subcategory-btn" data-type="jackets">Jacket Sets</button>
+          </div>
+        </div>
+
+        <!-- Product Display Container -->
+        <div id="product-display-container" class="hidden">
+          <div>
+            <h3 id="subcategory-title">Product Details</h3>
+            <div class="button-container">
+              <button id="add-product-btn" class="add-product-btn">Add New Product</button>
+            </div>
+          </div>
+          <div id="product-list" class="product-grid"></div>
+        </div>
+
+        <!-- Add Product Modal -->
+        <div id="add-product-modal" class="modal hidden">
+          <div class="modal-content">
+            <h3>Add New Product</h3>
+            <form id="add-product-form">
+              <label for="product-name">Name:</label>
+              <input type="text" id="product-name" required />
+
+              <label for="product-price">Price:</label>
+              <input type="number" id="product-price" required />
+
+              <label for="product-description">Description:</label>
+              <textarea id="product-description" required></textarea>
+
+              <label for="product-image">Choose Image:</label>
+              <input type="file" id="product-image" accept="image/*" required />
+
+              <button type="submit">Add Product</button>
+              <button type="button" id="cancel-add-product">Cancel</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Edit Product Modal -->
+        <!-- Edit Product Modal -->
+        <div id="edit-product-modal" class="modal hidden">
+          <div class="modal-content">
+            <h3>Edit Product</h3>
+            <form id="edit-product-form">
+              <label for="edit-product-name">Name:</label>
+              <input type="text" id="edit-product-name" required />
+
+              <label for="edit-product-price">Price:</label>
+              <input type="number" id="edit-product-price" required />
+
+              <label for="edit-product-description">Description:</label>
+              <textarea id="edit-product-description" required></textarea>
+
+              <button type="submit">Save Changes</button>
+              <button type="button" id="cancel-edit-product">Cancel</button> <!-- Updated ID -->
+            </form>
+          </div>
+        </div>
+
+
+      </section>
+
+
+
+      <section id="orders" class="content-section hidden">
+        <h1>Orders</h1>
+        <p>View and manage orders here. You can approve, reject, or mark them as shipped.</p>
+    
+        <!-- Search and Filter Section -->
+        <div class="orders-filter">
+            <input type="text" id="order-search" placeholder="Search by Order ID" onkeyup="filterOrders()">
+            <button id="refresh-orders" onclick="fetchOrders()">Refresh Orders</button>
+        </div>
+    
+        <!-- Orders Table -->
+        <table id="orders-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="orders-list">
+                <!-- Order rows will be dynamically populated here -->
+            </tbody>
+        </table>
+    </section>
+    
+
+    <section id="users" class="content-section hidden">
+      <h1>Users</h1>
+      <p>Manage user accounts and information here.</p>
+  
+      <!-- Search and Filter Section -->
+      <div class="users-filter">
+          <input type="text" id="user-search" placeholder="Search by Username" onkeyup="filterUsers()">
+          <button id="refresh-users" onclick="fetchUsers()">Refresh Users</button>
+      </div>
+  
+      <!-- Users Table -->
+      <table id="users-table">
+          <thead>
+              <tr>
+                  <th>User ID</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>mobilenumber</th>
+                  <th>Address</th>
+                  <th>Action</th>
+              </tr>
+          </thead>
+          <tbody id="users-list">
+              <!-- User rows will be dynamically populated here -->
+          </tbody>
+      </table>
+  </section>
+  
+
+
+
+
+<section id="settings" class="content-section hidden">
+  <h1>Settings</h1>
+  <p>Configure admin settings here.</p>
+
+  <!-- General Settings -->
+  <div class="settings-card">
+      <h3>General Settings</h3>
+      <form id="general-settings-form">
+          <label for="site-name">Site Name:</label>
+          <input type="text" id="site-name" placeholder="Enter site name" required />
+
+          <label for="site-email">Site Email:</label>
+          <input type="email" id="site-email" placeholder="Enter site email" required />
+
+          <button type="submit">Save Settings</button>
+      </form>
+  </div>
+
+  <!-- User Role Settings -->
+  <div class="settings-card">
+      <h3>User Roles</h3>
+      <form id="user-roles-form">
+          <label for="admin-role">Admin Role:</label>
+          <input type="text" id="admin-role" placeholder="Enter admin role" required />
+
+          <label for="user-role">User Role:</label>
+          <input type="text" id="user-role" placeholder="Enter user role" required />
+
+          <button type="submit">Save Roles</button>
+      </form>
+  </div>
+
+  <!-- Change Password -->
+  <div class="settings-card">
+      <h3>Change Password</h3>
+      <form id="change-password-form">
+          <label for="old-password">Old Password:</label>
+          <input type="password" id="old-password" required />
+
+          <label for="new-password">New Password:</label>
+          <input type="password" id="new-password" required />
+
+          <label for="confirm-password">Confirm New Password:</label>
+          <input type="password" id="confirm-password" required />
+
+          <button type="submit">Change Password</button>
+      </form>
+  </div>
+
+  <!-- Notification Preferences -->
+  <div class="settings-card">
+      <h3>Notification Preferences</h3>
+      <form id="notification-settings-form">
+          <label for="email-notifications">Email Notifications:</label>
+          <input type="checkbox" id="email-notifications" />
+
+          <label for="sms-notifications">SMS Notifications:</label>
+          <input type="checkbox" id="sms-notifications" />
+
+          <button type="submit">Save Preferences</button>
+      </form>
+  </div>
+</section>
+
+
+<section id="logout" class="content-section hidden">
+  <h1>Logout</h1>
+  <p>You are about to log out of your admin account.</p>
+  
+  <!-- Logout Confirmation Message -->
+  <div class="logout-message">
+      <p>Are you sure you want to log out?</p>
+      <div class="button-container">
+          <button id="confirm-logout" class="confirm-logout-btn">Yes, Log me out</button>
+          <button id="cancel-logout" class="cancel-logout-btn">Cancel</button>
+      </div>
+  </div>
+
+  <!-- Logged Out Message -->
+  <div id="logged-out-message" class="hidden">
+      <p>You have been logged out. <a href="/login">Log in again</a>.</p>
+  </div>
+</section>
+
     </div>
-    <script src="js/admin.js"></script>
+  </div>
+
+  <script src="js/admin.js"></script>
+  <script src="js/users.js"></script>
+  <script src="js/order.js"></script>
+
+
 </body>
 
 </html>

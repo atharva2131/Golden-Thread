@@ -1,354 +1,670 @@
-x   
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            color: #fff;  /* Light text for better contrast on dark background */
-            line-height: 1.6;
-        }
-        
-        header {
-            background-color: rgba(0, 0, 0, 0.9);  /* Darker background */
-            color: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);  /* Darker shadow */
-            backdrop-filter: blur(20px);
-            transition: background 0.5s ease, box-shadow 0.3s ease;
-            opacity: 1;  /* Full opacity for header */
-        }
-        
-        /* Navbar Styling with reduced height and black-based opacity */
-        .navbar {
-            background: rgba(0, 0, 0, 0.85);  /* Dark background */
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* Subtle border for contrast */
-            padding: 0.6rem 1.2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: background 0.4s ease, box-shadow 0.3s ease;
-            opacity: 0.95;  /* Slight transparency */
-        }
-        
-        /* Scrolled state with darker background */
-        .navbar.scrolled {
-            background: rgba(0, 0, 0, 0.95);  /* Slightly darker when scrolled */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-            opacity: 1;
-        }
-        
-        /* Container for layout and spacing */
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* Logo with brighter color for contrast */
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fff;  /* White color for logo */
-            position: relative;
-            letter-spacing: 1.2px;
-            text-decoration: none;
-        }
-        
-        /* Simplified Navigation Links */
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.2rem;
-            opacity: 0.85;
-        }
-        
-        /* Clean Links with subtle hover effect */
-        .nav-links a {
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #fff;  /* White text color */
-            padding: 5px 12px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Subtle glow and scaling effect on hover */
-        .nav-links a:hover {
-            color: #e67e22;  /* Vibrant orange color */
-            transform: scale(1.05);
-        }
-        
-        
-        
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background: rgba(0, 0, 0, 0.95);  /* Dark background for mobile menu */
-                padding: 1rem;
-                border-radius: 10px;
-            }
-        
-            .nav-links.active {
-                display: flex;
-            }
-        
-            .menu-toggle {
-                display: block;
-                font-size: 2rem;
-                color: #ff6f61;
-                cursor: pointer;
-            }
-        }
-        
-        /* Adding soft fade-in animation */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .navbar {
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8e8;
-            margin: 0;
-            padding: 0;
-        }
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lora', serif;
+}
 
-        .container {
-            padding: 20px;
-        }
+/* Body */
+body {
+    font-family: 'Lora', serif;
+    background-color: #ffffff;
+    color: #333;
+}
 
-        /* Wrapper to keep label and selections in the same line */
-        .color-section,
-        .size-section {
-            display: flex;
-            align-items: center;
-            /* Align the label with the selection options */
-            gap: 10px;
-            /* Space between label and selection options */
-            margin-bottom: 20px;
-        }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+li {
+    font-family: 'Lora', serif;
+}
 
-        .color-section label,
-        .size-section label {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-            margin-right: 10px;
-            /* Space between label and selection */
-        }
+/* Navbar */
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Darker background */
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+    /* Darker shadow */
+    backdrop-filter: blur(20px);
+    transition: background 0.5s ease, box-shadow 0.3s ease;
+    opacity: 1;
+    /* Full opacity for header */
+}
 
-        /* Style for the color circles */
-        .color-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            margin: 5px;
-            cursor: pointer;
-            display: inline-block;
-            border: 2px solid #ccc;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
+.navbar {
+    background: #ffffff;
+    /* Light background */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle border for contrast */
+    padding: 1.2rem 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.4s ease, box-shadow 0.3s ease;
+    opacity: 0.95;
+    /* Slight transparency */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle black shadow */
+}
 
-        .color-circle.selected {
-            border-color: #000;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            transform: scale(1.1);
-        }
 
-        #color-preview {
-            width: 100px;
-            height: 100px;
-            margin-top: 10px;
-            border: 1px solid #000;
-        }
 
-        /* Style for the size selection box */
-        .size-box {
-            display: flex;
-            gap: 10px;
-        }
+/* Scrolled state with darker background */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    /* Slightly darker when scrolled */
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.5);
+    opacity: 1;
+}
 
-        .size-box div {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transition: background-color 0.3s;
-        }
+/* Container for layout and spacing */
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .size-box div:not(.selected):hover {
-            background-color: rgba(255, 255, 255, 0.4);
-        }
+/* Logo with brighter color for contrast */
+.logo {
+    font-size: 1.7rem;
+    /* Font size of the logo */
+    font-weight: 700;
+    margin-left: 190px;
+    text-transform: uppercase;
+    color: #000000;
+    /* White color for logo */
+    position: relative;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+}
 
-        .size-box .selected {
-            background-color: rgba(0, 0, 0, 0.3);
-            color: #fff;
-        }
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+    /* Space between navigation items */
+    opacity: 0.85;
+}
+
+/* Clean Links with subtle hover effect */
+.nav-links a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    /* Font size for links */
+    font-weight: 500;
+    color: #000000;
+    /* White text color */
+    padding: 5px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Subtle glow and scaling effect on hover */
+.nav-links a:hover {
+    color: #FFD700;
+    /* Vibrant gold color */
+    transform: scale(1.05);
+}
+
+
+.nav-links .dropdown {
+    position: relative;
+}
+
+/* Dropdown menu container */
+.nav-links .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Positions the menu below the link */
+    left: 0;
+    background-color: #ffffff;
+    /* Pure white background */
+    list-style: none;
+    padding: 0;
+    /* Remove extra padding around items */
+    margin: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow */
+    z-index: 1000;
+    min-width: 200px;
+    /* Ensure consistent width for dropdown */
+    border-radius: 4px;
+    /* Smooth border corners */
+}
+
+/* Individual menu items */
+.nav-links .dropdown-menu li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* Ensure items span the full width of the dropdown */
+}
+
+/* Links inside the dropdown menu */
+.nav-links .dropdown-menu a {
+    display: block;
+    width: 100%;
+    /* Ensure the link takes the full width of the menu */
+    padding: 0.8rem 1rem;
+    /* Adjust padding for consistent spacing */
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000000;
+    /* Black text for dropdown items */
+    transition: all 0.3s ease;
+    background-color: transparent;
+    /* Default transparent background */
+    text-align: left;
+    /* Align text to the left */
+    box-sizing: border-box;
+    /* Include padding in width calculations */
+}
+
+/* Hover effect for dropdown menu items */
+.nav-links .dropdown-menu a:hover {
+    background-color: #000000;
+    /* Vibrant gold highlight */
+    color: #ffffff;
+    /* White text for contrast */
+}
+
+/* Show dropdown menu on hover */
+.nav-links .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Adjust dropdown alignment for responsive view */
+.nav-links .dropdown-menu {
+    left: auto;
+    /* Reset alignment */
+    right: 0;
+    /* Align to the right */
+}
 
 
 
 
 
-        /* Styling from your code */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f5f0;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
 
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 20px;
-        }
+/* For smaller screens (Mobile) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.6rem 15px;
+        /* Adjust padding for small screens */
+    }
 
-        .image-section,
-        .details-section {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
+    .logo {
+        font-size: 1.6rem;
+        /* Slightly smaller logo size */
+    }
 
-        #imageSection img {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-        }
+    .nav-links {
+        gap: 1rem;
+        /* Reduced gap for smaller screens */
+    }
 
-        .details-section {
-            padding-left: 40px;
-        }
+    .nav-links a {
+        font-size: 1rem;
+        /* Slightly smaller font size for links */
+    }
+}
 
-        .details-section h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin: 0;
-        }
 
-        .details-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            margin: 10px 0;
-        }
+/* Wrapper for the cart link */
+/* Wrapper for the cart link */
+a {
+    position: relative;
+    /* Ensure both the icon and count stay in the same flow */
+    display: inline-flex;
+    /* Aligns both icon and count horizontally */
+    align-items: center;
+    /* Vertically centers the icon and count */
+    color: #fff;
+    text-decoration: none;
+    margin-right: 100px;
+    /* Adjust space to the right of the cart */
+}
 
-        .details-section p {
-            font-size: 16px;
-            line-height: 1.5;
-        }
+/* Cart icon styling */
+a i.fas.fa-shopping-cart {
+    font-size: 24px;
+    /* Adjust the icon size */
+}
 
-        .price {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #333;
-            margin-top: 10px;
-        }
+/* Cart count styling */
+.cart-count {
+    background-color: transparent;
+    /* Makes the background transparent */
+    padding: 5px 10px;
+    /* Adjust padding for better visibility */
+    /* Optional: Add a border to make the count visible */
+    /* Keep the circular shape */
+    font-size: 16px;
+    /* Font size of the count */
+    font-weight: bold;
+    color: #000000;
+    /* Change the text color to match the border */
+    /* Space between the cart icon and count */
+}
 
-        .product-enquiry {
-            background-color: #000;
-            color: #fff;
-            padding: 15px 20px;
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 500;
-            cursor: pointer;
-            margin: 20px 0;
-        }
 
-        .shipping-info {
-            display: flex;
-            align-items: center;
-            border: 1px solid #000;
-            padding: 10px;
-            margin: 20px 0;
-        }
 
-        .shipping-info i {
-            margin-right: 10px;
-        }
 
-        .accordion {
-            border-top: 1px solid #ccc;
-            margin-top: 20px;
-        }
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+        /* Reduced padding on mobile */
+    }
 
-        .accordion-item {
-            border-bottom: 1px solid #ccc;
-        }
+    .navbar .logo {
+        font-size: 24px;
+        /* Smaller logo font size on mobile */
+    }
 
-        .accordion-item h3 {
-            font-size: 18px;
-            margin: 0;
-            padding: 15px 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        /* Reduced gap between links on mobile */
+        align-items: center;
+    }
 
-        .accordion-item h3:hover {
-            color: #000;
-        }
+    .nav-links a {
+        font-size: 20px;
+        /* Increased link size for touch-friendly targets */
+    }
 
-        .accordion-item-content {
-            display: none;
-            padding: 15px 0;
-        }
+    .cart-count {
+        top: -5px;
+        right: -5px;
+    }
+}
 
-        .accordion-item-content p {
-            margin: 0;
-        }
+/* Product Details */
+section {
+    padding: 20px;
+}
 
-        .share-icons {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-        }
+.product-details {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 8px;
 
-        .share-icons i {
-            margin-right: 10px;
-            cursor: pointer;
-        }
+}
 
-        @media (max-width: 768px) {
-            .details-section {
-                padding-left: 0;
-            }
-        }
+.product-details .container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
 
-        .button {
-            background-color: #231f20;
-            color: #ffffff;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            flex-grow: 1;
-        }
-    
+.product-details .image-section,
+.product-details .details-section {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+}
+
+.product-details .image-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-details .image-section img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+
+
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-details .details-section {
+    padding-left: 40px;
+}
+
+.product-details h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin: 0;
+}
+
+.product-details h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.product-details p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.product-details .price {
+    font-size: 1.5em;
+    letter-spacing: 3px;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 2px;
+}
+
+.product-details .add-to-cart button {
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    /* Makes the button take the full width of its container */
+    display: inline-block;
+    /* Ensures the button behaves as a block-level element */
+    line-height: 1.2;
+    /* Adjust this to vertically center text if needed */
+    border-radius: 0;
+    /* Straight corners */
+}
+
+
+
+.product-details .add-to-cart button:hover {
+    background-color: #000000;
+}
+
+.product-details .product-enquiry {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.product-details .shipping-info {
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.product-details .shipping-info i {
+    margin-right: 10px;
+}
+
+.product-details .accordion {
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+.product-details .accordion-item {
+    border-bottom: 1px solid #ccc;
+}
+
+.product-details .accordion-item h3 {
+    font-size: 18px;
+    margin: 0;
+    padding: 15px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-details .accordion-item h3:hover {
+    color: #000;
+}
+
+.product-details .accordion-item-content {
+    display: none;
+    padding: 15px 0;
+}
+
+.product-details .accordion-item-content p {
+    margin: 0;
+}
+
+.product-details .share-icons {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.product-details .share-icons i {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.details-section p {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.taxes {
+    font-size: 12px;
+    color: #b18e35;
+    margin-bottom: 20px;
+    }
+
+
+
+.details-section button {
+    background-color: #f4c542;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.details-section button:hover {
+    background-color: #f4a442;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-details .container {
+        flex-direction: column;
+    }
+
+    .product-details .details-section {
+        padding-left: 0;
+    }
+
+    .product-details h1 {
+        font-size: 28px;
+    }
+
+    .product-details p {
+        font-size: 16px;
+    }
+
+    .product-details .price {
+        font-size: 20px;
+    }
+
+    .product-details .add-to-cart button {
+        font-size: 16px;
+    }
+}
+
+
+/* Wrapper for each selection group */
+.selection-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Label for selection options */
+.selection-group h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    flex: 0.5;
+    white-space: nowrap;
+}
+
+/* Container for color and size options */
+.circle-options-container {
+    display: flex;
+    gap: 20px;
+    /* Increased spacing for a cleaner look */
+    flex-wrap: wrap;
+}
+
+/* Style for individual circle option */
+.circle-option {
+    width: 35px;
+    /* Slightly larger size for better visibility */
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    /* Softer border color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hide the radio input but keep it functional */
+.circle-option input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Style the label that acts as the visible circle */
+.circle-option label {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for the circle */
+.circle-option:hover {
+    transform: scale(1.15);
+    border-color: #aaa;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect for the label */
+.circle-option label:hover {
+    background-color: rgba(240, 240, 240, 0.9);
+}
+
+/* Selected/Checked circle effect */
+.circle-option input[type="radio"]:checked+label {
+    border: 1px solid #000;
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Size label styles for sizes like S, M, L */
+.size-label {
+    color: #444;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    line-height: 45px;
+}
+
+/* Improved focus state for keyboard navigation */
+.circle-option input[type="radio"]:focus+label {
+    outline: 1px solid #000;
+    outline-offset: 3px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .selection-group {
+        flex-direction: column;
+        gap: 15px;
+        /* Increased gap for better spacing on smaller screens */
+    }
+
+    .circle-options-container {
+        justify-content: center;
+    }
+}
+
+
+.toast-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    z-index: 9999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: fadein 0.5s, fadeout 3s 2.5s forwards;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

@@ -5,19 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Basic Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-    
-        /* Body */
+
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Lora', serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,52 +23,39 @@
             margin: 0;
             background-color: #fff;
         }
-    
-        /* Signup Container */
+
         .signup-container {
-            padding: 40px;
-            width: 100%;
-            max-width: 400px;
-        }
-    
-        .signup-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
             text-align: center;
-        }
-    
-        /* Form Group */
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-    
-        /* Label */
-        .form-label {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 8px;
-            display: block;
-        }
-    
-        /* Input Fields */
-        .form-input {
+            max-width: 400px;
             width: 100%;
-            padding: 12px;
-            font-size: 16px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-container h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .signup-container p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .signup-container input[type="text"],
+        .signup-container input[type="email"],
+        .signup-container input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
-            outline: none;
-            transition: border-color 0.3s ease;
+            border-radius: 4px;
+            font-size: 14px;
         }
-    
-        .form-input:focus {
-            border-color: #3b82f6;
-        }
-    
-        /* Password Visibility Toggle Icon */
-        .password-toggle {
+
+        .signup-container .password-toggle {
             position: absolute;
             right: 10px;
             top: 69%;
@@ -79,133 +64,179 @@
             color: #aaa;
             font-size: 16px;
         }
-    
-        .password-toggle:hover {
+
+        .signup-container .password-toggle:hover {
             color: #007bff;
         }
-    
-        /* Submit Button */
-        .submit-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: black;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
+
+        .signup-container button {
+            width: 90%;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
             border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-    
-        .submit-btn:hover {
-            background-color: black;
-        }
-    
-        /* Login Link */
-        .login-link {
-            display: block;
-            text-align: center;
-            color: black;
-            margin-top: 15px;
+            border-radius: 4px;
             font-size: 14px;
+            cursor: pointer;
+        }
+
+        .signup-container button:hover {
+            background-color: #333;
+        }
+
+        .signup-container .login-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .signup-container .login-link a {
+            color: #000;
             text-decoration: none;
         }
-    
-        .login-link:hover {
+
+        .signup-container .login-link a:hover {
             text-decoration: underline;
         }
+
+        /* Toast CSS */
+        .toast {
+            position: fixed;
+            top: 20px; /* Position 20px from the top */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center it accurately */
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease-in-out; /* Smooth transition */
+            z-index: 1001; /* Ensure it appears above other elements */
+        }
+        .toast.show {
+            visibility: visible;
+            animation: fadeInOut 3s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
-       
 </head>
 
 <body>
     <div class="signup-container">
-        <h2 class="signup-title">Sign Up</h2>
-        <form>
-            <div class="form-group">
-                <label for="username" class="form-label">Name</label>
-                <input type="text" id="username" name="username" class="form-input" required>
-            </div>
-            <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" class="form-input" required>
-            </div>
-            <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" name="password" class="form-input" required>
-                <i class="fa fa-eye password-toggle" onclick="togglePassword('password')"></i>
-            </div>
-            <div class="form-group">
-                <label for="confirm-password" class="form-label">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" class="form-input" required>
-                <i class="fa fa-eye password-toggle" onclick="togglePassword('confirm-password')"></i>
-            </div>
-            <button type="submit" class="submit-btn">Sign Up</button>
-        </form>
-        <a href="login.html" class="login-link">Already have an account? Log in</a>
+        <h2>Sign Up</h2>
+        <p>Please enter your details to register:</p>
+        <input type="text" id="username" name="username" placeholder="Name" required>
+        <input type="text" id="mobilenumber" name="mobilenumber" placeholder="Mobile Number" required>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="text" id="address" name="address" placeholder="Address" required>
+        <div class="form-group">
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <i class="fa fa-eye password-toggle" onclick="togglePassword('password')"></i>
+        </div>
+        <div class="form-group">
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+            <i class="fa fa-eye password-toggle" onclick="togglePassword('confirm-password')"></i>
+        </div>
+        <button type="button" id="registerBtn">Sign Up</button>
+        <p class="login-link">Already have an account? <a href="login.html">Log In</a></p>
     </div>
 
+    <!-- Toast Container -->
+    <div id="toast" class="toast"></div>
+
     <script>
-        
-      // Get the form element
-const form = document.querySelector("form");
+        document.getElementById('registerBtn').addEventListener('click', async function () {
+            // Get form values
+            const name = document.getElementById('username').value.trim();
+            const mobilenumber = document.getElementById('mobilenumber').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirm-password').value.trim();
 
-// Add event listener for form submission
-form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Prevent default form submission
+            // Validate inputs
+            if (!name || !mobilenumber || !email || !address || !password || !confirmPassword) {
+                showToast('Please fill in all the fields.');
+                return;
+            }
 
-    // Gather form data
-    const formData = {
-        name: document.getElementById("username").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        password: document.getElementById("password").value.trim(),
-        confirm_password: document.getElementById("confirm-password").value.trim(), // Match the API field
-    };
+            if (password !== confirmPassword) {
+                showToast('Passwords do not match.');
+                return;
+            }
 
-    try {
-        // Send a POST request to the API
-        const response = await fetch("http://192.168.29.32:5000/auth/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
+            // Prepare the payload for the API
+            const registerData = {
+                name: name,
+                mobilenumber: mobilenumber,
+                email: email,
+                address: address,
+                password: password
+            };
+
+            try {
+                // Make the API call
+                const response = await fetch('http://localhost:5000/api/user/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(registerData)
+                });
+
+                // Handle the response
+                const result = await response.json();
+
+                if (response.ok) {
+                    showToast('Registration successful!');
+                    window.location.href = 'login.html'; // Redirect to login page
+                } else {
+                    showToast(result.message || 'Registration failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error during registration:', error);
+                showToast('An error occurred. Please try again later.');
+            }
         });
 
-        // Parse the JSON response
-        const data = await response.json();
-
-        if (response.ok) {
-            alert(data.message || "Signup successful!"); // Show success message
-            form.reset(); // Reset the form fields
-            window.location.href = "login.html"; // Redirect to login page
-        } else {
-            alert(data.error || "Signup failed. Please try again."); // Show error message
+        // Function to toggle password visibility
+        function togglePassword(fieldId) {
+            const inputField = document.getElementById(fieldId);
+            if (inputField.type === 'password') {
+                inputField.type = 'text';
+            } else {
+                inputField.type = 'password';
+            }
         }
-    } catch (error) {
-        console.error("Error:", error); // Log the error
-        alert("Error: Could not connect to the server. Please try again later."); // Show connection error
-    }
-});
 
-// Function to toggle password visibility
-function togglePassword(id) {
-    const passwordInput = document.getElementById(id);
-    const icon = passwordInput.nextElementSibling; // Get the toggle icon element
+        // Function to show toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.opacity = 1;
 
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text"; // Show the password
-        icon.classList.remove("fa-eye"); // Update icon
-        icon.classList.add("fa-eye-slash");
-    } else {
-        passwordInput.type = "password"; // Hide the password
-        icon.classList.remove("fa-eye-slash"); // Update icon
-        icon.classList.add("fa-eye");
-    }
-}
-
-        
-        
+            setTimeout(() => {
+                toast.style.opacity = 0;
+            }, 5000); // Toast disappears after 3 seconds
+        }
     </script>
 </body>
 

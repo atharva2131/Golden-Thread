@@ -4,64 +4,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CO-ORD Sets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f5ec;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        header {
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #000000;
+            padding: 5px 10px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            z-index: 1000;
+        }
+
+        .dropdown-menu li {
+            width: 200px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f8f8f8;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .cart-count {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #000000;
+            margin-left: 0.5rem;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
+
         .header {
             text-align: center;
-            font-size: 24px;
+            font-size: 2rem;
             font-weight: bold;
             margin-bottom: 20px;
         }
+
         .product-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
         }
+
         .product-item {
             background-color: #fff;
             border: 1px solid #e0e0e0;
             width: calc(33.33% - 20px);
-            box-sizing: border-box;
             padding: 10px;
             text-align: center;
+            transition: transform 0.3s;
             cursor: pointer;
         }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         .product-item img {
             width: 100%;
             height: auto;
         }
-        .product-info {
-            margin-top: 10px;
-        }
+
         .product-info h2 {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 5px 0;
-        }
-        .product-info p {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-        .price {
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: bold;
             margin: 10px 0;
         }
+
+        .product-info p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .price {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .product-actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            color: #fff;
+            background-color: #000000;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #444;
+        }
+
         @media (max-width: 768px) {
             .product-item {
                 width: calc(50% - 20px);
             }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
+
         @media (max-width: 480px) {
             .product-item {
                 width: 100%;
@@ -70,10 +201,41 @@
     </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <a href="home.html" class="logo">Golden Thread</a>
+            <ul class="nav-links">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-link">Men</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sherwanis.html">Sherwanis</a></li>
+                        <li><a href="kurta-sets.html">Kurta Sets</a></li>
+                        <li><a href="blazer-sets.html">Blazers</a></li>
+                        <li><a href="jacket-sets.html">Jacket Sets</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-link">Women</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="bridal.html">Bridal Wear</a></li>
+                        <li><a href="sarees.html">Sarees</a></li>
+                        <li><a href="lehenga-sets.html">Lehenga Sets</a></li>
+                        <li><a href="co-ord-sets.html">Co-ord Sets</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="view_cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
     <div class="container">
         <div class="header">CO-ORD Sets</div>
         <div class="product-grid">
-            <!-- Products will be dynamically loaded here -->
+            <!-- Products will be dynamically loaded -->
         </div>
     </div>
     <script src="js/co-ord-sets.js"></script>

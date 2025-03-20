@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     productGrid.innerHTML = "<p>Loading products...</p>";
 
     try {
-        // Fetch data from the backend API for Blazer Sets
-        const response = await fetch("http://127.0.0.1:5000/api/blazer_sets");
+        // Fetch data from the backend API for Blazers
+        const response = await fetch("http://localhost:5000/api/blazers");
 
         // Check for HTTP errors
         if (!response.ok) {
@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Initialize an array to store product IDs
         const productIds = [];
+
+        // Define the product type
+        const productType = "blazers";
 
         // Check if products exist and render them
         if (products && products.length > 0) {
@@ -40,12 +43,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Set up redirection to product details page on click
                 productItem.onclick = () => {
-                    window.location.href = `product_details.html?id=${productId}`;
+                    window.location.href = `product_details.html?id=${productId}&type=${productType}`;
                 };
 
                 // Create an image element for the product
                 const img = document.createElement("img");
-                img.src = product.image_url || "/uploads/default-placeholder.jpg"; // Ensure the fallback is correct
+                img.src = product.image || "/uploads/default-placeholder.jpg"; // Ensure the fallback is correct
                 img.alt = product.name || "Product Image";
                 img.classList.add("product-image");
 
@@ -79,4 +82,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             <button onclick="window.location.reload()">Retry</button>
         `;
     }
+});
+
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCountElement = document.getElementById('cart-count');
+
+    if (cartCountElement) {
+        cartCountElement.textContent = cart.length;
+    }
+}
+
+// Update cart count on page load
+document.addEventListener('DOMContentLoaded', function () {
+    updateCartCount(); // Updates the cart count
 });

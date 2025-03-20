@@ -7,6 +7,11 @@
     <title>Golden Thread</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
+    
 
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -17,27 +22,43 @@
         <nav class="navbar">
             <div class="container">
                 <a href="#" class="logo">Golden Thread</a>
+                <!-- Mobile Menu Toggle Button -->
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
                 <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-link">Men</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sherwanis.html">Sherwanis</a></li>
+                            <li><a href="kurta-sets.html">Kurta Sets</a></li>
+                            <li><a href="blazer-sets.html">Blazers</a></li>
+                            <li><a href="jacket-sets.html">Jacket Sets</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-link">Women</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="bridal.html">Bridal Wear</a></li>
+                            <li><a href="sarees.html">Sarees</a></li>
+                            <li><a href="lehenga-sets.html">Lehenga Sets</a></li>
+                            <li><a href="co-ord-sets.html">Co-ord Sets</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#about-us">About</a></li>
                     <li><a href="#collections">Collections</a></li>
-                    <ul>
-                        <!-- Cart Icon with count -->
-                        <li>
-                            <a href="view_cart.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span id="cart-count" class="cart-count">0</span> <!-- Display count here -->
-                            </a>
-                        </li>
-
-                        <!-- Cart Icon -->
-                    </ul>
-                    <li><a href="login.html"><i class="fas fa-user"></i></a></li> <!-- User Icon for login/profile -->
+                    <li>
+                        <a href="view_cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count" class="cart-count">0</span>
+                        </a>
+                    </li>
+                    <li><a href="login.html"><i class="fas fa-user"></i></a></li>
                 </ul>
             </div>
         </nav>
     </header>
-
-
+    
 
 
 
@@ -67,25 +88,30 @@
 
     <section class="about-us" id="about-us">
         <div class="container">
+            <!-- Text Content -->
             <div class="about-content">
                 <h2>About Us</h2>
                 <p>
-                    Welcome to <strong>Premium Clothing</strong>, where sophistication meets craftsmanship.
+                    Welcome to <strong>Golden Thread</strong>, where sophistication meets craftsmanship.
                     Our premium clothing is designed to inspire confidence and celebrate individuality.
-                    We are dedicated to creating timeless pieces that reflect the perfect blend of luxury, quality, and
-                    style.
+                    We are dedicated to creating timeless pieces that reflect the perfect blend of luxury, quality, and style.
                 </p>
                 <p>
                     Every stitch tells a story of excellence, and every fabric is carefully chosen to ensure the utmost
-                    comfort and durability.
-                    From our exclusive collections to our bespoke designs, we promise an unparalleled experience for
-                    those who demand the best.
+                    comfort and durability. From our exclusive collections to our bespoke designs, we promise an unparalleled
+                    experience for those who demand the best.
                 </p>
                 <a href="#collections" class="btn">Explore Our Journey</a>
             </div>
-
+    
+            <!-- Image Content -->
+            <div class="about-image">
+                <img src="img/image61.jpg" alt="About Us Image">
+            </div>
         </div>
     </section>
+    
+    
 
 
     <section id="collections" class="collections">
@@ -118,7 +144,7 @@
 
 
             <div class="collection-section" id="mens-collection">
-                <h3>Men's Collection</h3>
+                <h3>MENSWEAR</h3>
                 <div class="grid">
                     <a href="sherwanis.html" class="card">
                         <img src="img/image5.jpg" alt="Traditional Sherwanis from Men's Collection">
@@ -144,12 +170,55 @@
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 Premium Clothing. All rights reserved.</p>
+        <div class="footer-container">
+            <!-- Background Image -->
+            <img src="img/footer.jpg" alt="Footer Background">
+    
+            <!-- Footer Content Section -->
+            <div class="footer-content">
+                <!-- Logo Section -->
+                
+    
+                <!-- Navigation Links -->
+                <div class="footer-links">
+                    <p>NAVIGATE</p>
+                    <a href="#about-us">About Us</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#faq">FAQs</a>
+                </div>
+                
+                <div class="footer-links">
+                    <P>CATEGORIES</P>
+                    <a href=#collections>Womens</a>
+                    <a href="#collections">Mens</a>
+
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="footer-social">
+                    <P>FOLLOW-US</P>
+                    <a href="#" class="social-icon">Facebook</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">LinkedIn</a>
+                </div>
+    
+               
+                
+            </div>
+    
+            <!-- Footer Bottom Section -->
+            <div class="footer-overlay">
+                <p>&copy; 2025 Golden Thread. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+    
+    
+    
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

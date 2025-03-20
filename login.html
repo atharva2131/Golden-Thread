@@ -76,54 +76,45 @@
         .login-container .signup a:hover {
             text-decoration: underline;
         }
-        /* Popup Styles */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            z-index: 1000;
-        }
-        .popup h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .popup p {
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .popup button {
-            padding: 8px 16px;
-            background-color: #000;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .popup button:hover {
-            background-color: #333;
-        }
-        /* Overlay */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
+        /* Toast Styles */
+.toast {
+    position: fixed;
+    top: 60px; /* Keep some space from the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Offset to truly center it */
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1001;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+.toast.error {
+    background-color: #e74c3c; /* Error toast color */
+}
+
+.toast.success {
+    background-color: #2ecc71; /* Success toast color */
+}
+
+.toast.info {
+    background-color: #3498db; /* Info toast color */
+}
+
     </style>
 </head>
 <body>
+
+    
+    <!-- Toast Notifications -->
+    <div class="toast" id="toast"></div>
     <div class="login-container">
         <h1>LOGIN</h1>
         <p>Please enter your e-mail and password:</p>
@@ -134,54 +125,67 @@
         <p class="signup">Don't have an account? <a href="registration.html">Register Now</a></p>
     </div>
 
-    <!-- Popup -->
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="popup">
-        <h2 id="popupTitle">Error</h2>
-        <p id="popupMessage">Please enter both email and password.</p>
-        <button id="popupCloseBtn">Close</button>
-    </div>
 
     <script>
-       // Add an event listener to the login button
-document.getElementById("loginBtn").addEventListener("click", async () => {
-    // Get the values from the input fields
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+        // Show toast message
+function showToast(message, type) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.className = `toast show ${type}`;
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 5000); // Hide after 5 seconds
+}
 
-    // Validate input fields
+// Add an event listener to the login button
+document.getElementById('loginBtn').addEventListener('click', async function () {
+    // Get the email and password input values
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    // Validate inputs
     if (!email || !password) {
-        alert("Please fill in all fields.");
-        return;
+        showToast('Please enter both email and password.', 'error');
+        return; // Make sure to stop the login process if validation fails
     }
 
+    // Prepare the payload for the API
+    const loginData = {
+        email: email,
+        password: password
+    };
+
     try {
-        // Send a POST request to the login API
-        const response = await fetch("http://192.168.29.32:5000/auth/user-login", {
-            method: "POST",
+        // Make the API call using Fetch
+        const response = await fetch('http://localhost:5000/api/user/login', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify(loginData)
         });
 
         // Parse the JSON response
-        const data = await response.json();
+        const result = await response.json();
 
         if (response.ok) {
-            alert(data.message || "Login successful!"); // Show success message
-            // Store token or session info if needed
-            localStorage.setItem("authToken", data.token || ""); // Assuming API returns a token
-            window.location.href = "home.html"; // Redirect to dashboard or home page
+            // If login is successful
+            showToast('Login successful!', 'success');
+            // You can redirect to another page after a slight delay to allow the toast to show
+            setTimeout(() => {
+                window.location.href = '/home.html'; // Replace with your dashboard URL
+            }, 2000); // Delay to allow the success toast to display for a while
         } else {
-            alert(data.error || "Login failed. Please check your credentials."); // Show error message
+            // If login fails, display the error message
+            showToast(result.message || 'Login failed. Please try again.', 'error');
         }
     } catch (error) {
-        console.error("Error:", error); // Log error
-        alert("Error: Could not connect to the server. Please try again later."); // Show connection error
+        // Handle any errors during the API call
+        console.error('Error during login:', error);
+        showToast('An error occurred. Please try again later.', 'error');
     }
 });
-
+    
     </script>
 </body>
 </html>
